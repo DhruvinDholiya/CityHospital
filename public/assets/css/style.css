@@ -1890,3 +1890,12 @@ section {
 .skill_desc li:hover::after {
   border-color: #FFFFFF;
 }
+
+.contact .form-error {
+  color: #FF0000;
+  font-size: 12px;
+  position: absolute;
+}
+.contact .form-error::first-letter {
+  text-transform: uppercase;
+}

@@ -1,6 +1,44 @@
+import { useFormik } from 'formik';
 import React from 'react';
+import * as Yup from "yup";
 
-function Contact(props) {
+const SignUpSchema = Yup.object({
+    name: Yup.string()
+        .matches(/^[A-Za-z ]+$/, "Name must only contain characters.")
+        .min(2)
+        .required("Please enter your name."),
+    email: Yup.string()
+        .email()
+        .required("Please enter email address."),
+    subject: Yup.mixed()
+        .required("Please enter subject."),
+    message: Yup.mixed()
+        .required("Please enter any message.").test(
+            "message",
+            "Maximum 5 words allowed.",
+            function (value) {
+                let messageWords = value.split(" ");
+
+                if (messageWords.length > 5) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        )
+});
+
+
+const initialValues = { name: '', email: '', subject: '', message: '' }
+const Contact = () => {
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+        validationSchema: SignUpSchema,
+        initialValues: initialValues,
+        onSubmit: (values, action) => {
+            console.log(values);
+            action.resetForm();
+        }
+    });
     return (
         <main>
             <section id="contact" className="contact">
@@ -34,27 +72,38 @@ function Contact(props) {
                             </div>
                         </div>
                         <div className="col-lg-8 mt-5 mt-lg-0">
-                            <form action='xyz.js' method="post" className="php-email-form">
+                            <form onSubmit={handleSubmit} className="php-email-form">
                                 <div className="row">
                                     <div className="col-md-6 form-group">
-                                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />
+                                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name"
+                                            value={values.name}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur} />
+                                        {errors.name && touched.name ? <span className='form-error'>{errors.name}</span> : null}
                                     </div>
-                                    <div className="col-md-6 form-group mt-3 mt-md-0">
-                                        <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" required />
+                                    <div className="col-md-6 form-group mt-4 mt-md-0">
+                                        <input type="email" className="form-control" name="email" id="email" placeholder="Your Email"
+                                            value={values.email}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur} />
+                                        {errors.email && touched.email ? <span className='form-error'>{errors.email}</span> : null}
                                     </div>
                                 </div>
-                                <div className="form-group mt-3">
-                                    <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" required />
+                                <div className="form-group mt-4">
+                                    <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject"
+                                        value={values.subject}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} />
+                                    {errors.subject && touched.subject ? <span className='form-error'>{errors.subject}</span> : null}
                                 </div>
-                                <div className="form-group mt-3">
-                                    <textarea className="form-control" name="message" rows={5} placeholder="Message" required defaultValue={""} />
+                                <div className="form-group mt-4">
+                                    <textarea className="form-control" name="message" rows={5} placeholder="Message"
+                                        value={values.message}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} />
+                                    {errors.message && touched.message ? <span className='form-error'>{errors.message}</span> : null}
                                 </div>
-                                <div className="my-3">
-                                    <div className="loading">Loading</div>
-                                    <div className="error-message" />
-                                    <div className="sent-message">Your message has been sent. Thank you!</div>
-                                </div>
-                                <div className="text-center"><button type="submit">Send Message</button></div>
+                                <div className="text-center mt-5"><button type="submit">Send Message</button></div>
                             </form>
                         </div>
                     </div>

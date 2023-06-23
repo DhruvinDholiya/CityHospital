@@ -11,7 +11,6 @@ import Doctor from './container/Doctor';
 import VisitingDoctors from './container/VisitingDoctors';
 import NotFound from './component/NotFound';
 import Auth from './container/Auth';
-// import AuthByStates from './container/AuthByStates';
 
 function App() {
   return (
@@ -32,7 +31,6 @@ function App() {
         </Route>
         <Route path='*' element={<NotFound />}/>
         <Route path='/auth' element={<Auth />}/>
-        {/* <Route path='/auth' element={<AuthByStates />} /> */}
       </Routes>
       <Footer />
     </>
