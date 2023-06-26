@@ -1,7 +1,79 @@
 import React, { useState } from 'react';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 
-function Auth(props) {
+function Auth() {
     const [formType, setFormType] = useState('login');
+
+    let validSchema = {};
+    let initalVal = {};
+
+    if (formType === 'login') {
+        validSchema = {
+            email: Yup
+                .string()
+                .email()
+                .required(),
+            password: Yup
+                .string()
+                .min(8, 'Password is too short - should be 8 chars minimum.')
+                .matches(
+                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                    "Must password have, Numbers , alphabets, and Special Character")
+                .required(),
+        };
+        initalVal = {
+            email: '',
+            password: ''
+        }
+    } else if (formType === 'signup') {
+        validSchema = {
+            name: Yup
+                .string()
+                .min(2)
+                .matches(/^[A-Za-z ]+$/, "Name must only contain characters.")
+                .required(),
+            email: Yup
+                .string()
+                .email()
+                .required(),
+            password: Yup
+                .string()
+                .min(8, 'Password is too short - should be 8 chars minimum.')
+                .matches(
+                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                    "Must password have, Numbers , alphabets, and Special Character")
+                .required(),
+        }
+        initalVal = {
+            name: '',
+            email: '',
+            password: ''
+        }
+    } else if (formType === 'forgot') {
+        validSchema = {
+            email: Yup
+                .string()
+                .email()
+                .required(),
+        }
+        initalVal = {
+            email: ''
+        }
+    }
+
+    let authSchema = Yup.object(validSchema)
+    const { errors, values, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+        validationSchema: authSchema,
+        initialValues: initalVal,
+        enableReinitialize: true,
+        onSubmit: (values, action) => {
+            console.log(values);
+            action.resetForm();
+
+        }
+
+    })
     return (
         <main>
             <section id="appointment" className="appointment">
@@ -25,25 +97,35 @@ function Auth(props) {
                             </p>
                         </div>
                     </div>
-                    <form action="true" method="post" className="php-email-form">
-                        <div className="row justify-content-center g-3">
+                    <form onSubmit={handleSubmit} className="php-email-form">
+                        <div className="row justify-content-center g-4">
                             {
                                 formType === 'signup' ?
                                     <div className="col-md-7">
-                                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                        <div className="validate" />
+                                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name"
+                                            value={values.name}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.name && touched.name ? <div className="validate">{errors.name}</div> : null}
                                     </div>
                                     : null
                             }
                             <div className="col-md-7">
-                                <input type="email" className="form-control" name="email" id="email" placeholder="Email Address" data-rule="email" data-msg="Please enter a valid email" />
-                                <div className="validate" />
+                                <input type="email" className="form-control" name="email" id="email" placeholder="Email Address"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur} />
+                                {errors.email && touched.email ? <div className="validate">{errors.email}</div> : null}
                             </div>
                             {
                                 formType === 'forgot' ? null
                                     : <div className="col-md-7">
-                                        <input type="password" className="form-control" name="password" id="password" placeholder="Password" data-rule="password" data-msg="Please enter a valid password" />
-                                        <div className="validate" />
+                                        <input type="password" className="form-control" name="password" id="password" placeholder="Password"
+                                            value={values.password}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur} />
+                                        {errors.password && touched.password ? <div className="validate">{errors.password}</div> : null}
                                     </div>
                             }
                         </div>
