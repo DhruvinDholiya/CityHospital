@@ -47,6 +47,7 @@ function Header() {
                             <span className="d-none d-md-inline">Login/ Signup</span>
                         </Link>
                     )}
+                    <Link to="/admin" className='appointment-btn scollto'><span className="d-none d-md-inline">admin</span></Link>
                     {/* ======================= */}
                 </div>
             </header>
