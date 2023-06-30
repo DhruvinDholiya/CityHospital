@@ -1959,7 +1959,7 @@ section {
 
 .form-error {
   color: #FF0000;
-  font-size: 12px;
+  font-size: 11px;
   position: absolute;
 }
 
@@ -1968,7 +1968,6 @@ section {
 }
 
 .logo-admin {
-  font-size: 30px;
   float: none;
   margin: 0;
 }
@@ -1982,4 +1981,24 @@ input {
 }
 .app_items a:hover {
   color: inherit;
+}
+#addModal > div:first-child {
+  backdrop-filter: blur(5px);
+}
+.medicines_data_table [role="rowgroup"] {
+  background-color: rgba(0, 0, 0, 0.04);
+  /* width: 100%; */
+}
+.medicines_data_table div[aria-label],
+.medicines_data_table div[data-field="id"] .MuiDataGrid-cellContent {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.MuiDataGrid-root .MuiDataGrid-columnHeader:not(:last-child),
+.MuiDataGrid-root .MuiDataGrid-cell:not(:last-child) {
+  border-right: 1px solid rgba(224, 224, 224, 1);
+}
+.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within,
+.MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+  outline: none !important;
 }

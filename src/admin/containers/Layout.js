@@ -17,13 +17,13 @@ import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from "react-router-dom";
-import { FastField } from "formik";
 
-const drawerWidth = 175;
+const drawerWidth = 150;
 
 const openedMixin = (theme) => ({
-    backgroundColor: "#FFF4F3",
+    backgroundColor: "rgba(0, 0, 0, 0.04)",
     width: drawerWidth,
+    height: '100%',
     transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -32,7 +32,7 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
-    backgroundColor: "#FFF4F3",
+    backgroundColor: "rgba(0, 0, 0, 0.04)",
     transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -41,6 +41,7 @@ const closedMixin = (theme) => ({
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up("sm")]: {
         width: `calc(${theme.spacing(8)} + 1px)`,
+        height: '100%'
     },
 });
 
@@ -176,7 +177,7 @@ const Layout = ({ children }) => {
                     ))}
                 </List>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, px: 3 }}>
                 <DrawerHeader />
                 {children}
             </Box>
