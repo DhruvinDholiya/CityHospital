@@ -1,28 +1,33 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import TextField from '@mui/material/TextField';
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import CloseIcon from '@mui/icons-material/Close';
-import AddIcon from '@mui/icons-material/Add';
-import { useFormik } from "formik";
+import * as React from 'react';
 import * as Yup from "yup";
+import { useFormik } from "formik";
+import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function Doctors() {
+    const [open, setOpen] = React.useState(false);
+    const [data, setData] = React.useState([]);
+    const [idForRowUpdate, setIdForRowUpdate] = React.useState(null)
+
     const validation = Yup.object({
-        name: Yup
+        drname: Yup
             .string()
-            .min(2)
-            .matches(/^[a-zA-Z ]+$/, "Product name is invalid")
-            .required('Product name is a required field'),
-        designation: Yup
+            .min(2, 'Name must be at least 2 characters')
+            .matches(/^[a-zA-Z. ]+$/, "name is invalid")
+            .required('Name is a required field'),
+        drdesignation: Yup
             .string()
-            .min(2)
-            .matches(/^[a-zA-Z ]+$/, "designation is invalid")
+            .min(2, 'Designation must be at least 2 characters')
             .required('designation is a required field'),
-        desc: Yup.string()
+        drdesc: Yup.string()
             .test("message", "Enter Maximum 100 Word", function (value) {
                 let ary = value.split(" ");
                 if (ary.length > 100) {
@@ -32,44 +37,33 @@ export default function Doctors() {
                 }
             })
             .required('Description is a required field'),
-        twitter: Yup
+        drtwitter: Yup
             .string()
             .url()
             .required('Twitter is a required field'),
-        facebook: Yup
+        drfacebook: Yup
             .string()
             .url()
             .required('Facebook is a required field'),
-        instagram: Yup
+        drinstagram: Yup
             .string()
             .url()
             .required('Instagram is a required field'),
-        linkdin: Yup
+        drlinkdin: Yup
             .string()
             .url()
             .required('Linkdin is a required field')
     });
 
-    const { handleBlur, handleChange, handleSubmit, touched, errors, values } =
-        useFormik({
-            initialValues: {
-                name: "",
-                designation: "",
-                desc: "",
-                twitter: "",
-                facebook: "",
-                instagram: "",
-                linkdin: ""
-                
-            },
-            validationSchema: validation,
-            onSubmit: (values, action) => {
-                console.log(values)
-                action.resetForm();
-            },
-        });
-
-    const [open, setOpen] = React.useState(false);
+    const formik = useFormik({
+        initialValues: { drname: "", drdesignation: "", drdesc: "", drtwitter: "", drfacebook: "", drinstagram: "", drlinkdin: "" },
+        validationSchema: validation,
+        onSubmit: (values, action) => {
+            handleAddData(values);
+            action.resetForm()
+        },
+    });
+    const { handleBlur, handleChange, handleSubmit, touched, errors, values } = formik;
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -77,145 +71,190 @@ export default function Doctors() {
 
     const handleClose = () => {
         setOpen(false);
+        formik.resetForm()
+        setIdForRowUpdate(null);
     };
+
+    const handleAddData = (data) => {
+        let id = Math.floor(Math.random() * 1000);
+        let newData = { id, ...data };
+
+        let l_doctors = JSON.parse(localStorage.getItem("_doctors"));
+
+        if (l_doctors === null) {
+            localStorage.setItem("_doctors", JSON.stringify([newData]))
+            setData([newData])
+        } else {
+            if (idForRowUpdate !== null) {
+                l_doctors = l_doctors.map((item) =>
+                    item.id === idForRowUpdate ? { ...newData } : item
+                )
+                setIdForRowUpdate(null);
+            } else {
+                l_doctors.push(newData)
+            }
+            localStorage.setItem("_doctors", JSON.stringify(l_doctors))
+            setData(l_doctors)
+        }
+        handleClose()
+    }
+
+    const handleDelete = (id) => {
+        let l_doctors = JSON.parse(localStorage.getItem("_doctors"));
+        let f_doctors = l_doctors.filter((v, i) => v.id !== id);
+        localStorage.setItem("_doctors", JSON.stringify(f_doctors))
+        setData(f_doctors);
+    }
+
+    const handleUpdate = (row) => {
+        formik.setValues(row);
+        setIdForRowUpdate(row.id)
+        handleClickOpen()
+    }
+
+    React.useEffect(() => {
+        let l_doctors = JSON.parse(localStorage.getItem("_doctors"));
+        if (l_doctors !== null) {
+            setData(l_doctors)
+        }
+    }, [])
+
+    const columns = [
+        { field: 'id', headerName: 'ID', flex: 1 },
+        { field: 'drname', headerName: 'Name', flex: 2 },
+        { field: 'drdesignation', headerName: 'Designation', flex: 2 },
+        { field: 'drdesc', headerName: 'Description', flex: 4 },
+        { field: 'drtwitter', headerName: 'Twitter', flex: 2 },
+        { field: 'drfacebook', headerName: 'facebook', flex: 2 },
+        { field: 'drinstagram', headerName: 'instagram', flex: 2 },
+        { field: 'drlinkdin', headerName: 'linkdin', flex: 2 },
+        {
+            field: 'action', headerName: 'Action', flex: 1, sortable: false, disableColumnMenu: true,
+            renderCell: (params) => (
+                <>
+                    <IconButton aria-label="delete" type='button' onClick={() => handleDelete(params.row.id)} >
+                        <DeleteIcon sx={{ fontSize: '20px' }} />
+                    </IconButton>
+                    <IconButton aria-label="edit" type='button' onClick={() => handleUpdate(params.row)} >
+                        <EditIcon sx={{ fontSize: '20px' }} />
+                    </IconButton>
+                </>
+            )
+        }
+    ];
+
+    let l_doctors = JSON.parse(localStorage.getItem("_doctors"));
+    let rows = [];
+    if (l_doctors !== null) {
+        rows = l_doctors
+    }
 
     return (
         <>
-            <Button type="button" variant="contained" onClick={handleClickOpen}>Doctor <AddIcon style={{ textAlign: 'right' }} fontSize="small" /></Button>
-            <Dialog open={open}>
-                <DialogActions style={{ position: "absolute", right: '15px', top: '32px', padding: '0', justifyContent: 'flex-end' }}><Button style={{ padding: '0' }} onClick={handleClose}><CloseIcon style={{ color: '#FF6337' }} /></Button></DialogActions>
-                <form className="p-5 pt-4" onSubmit={handleSubmit} style={{ width: "450px" }}>
-                    <DialogContent className="p-0">
-                        <DialogTitle fontSize={'25px'} color={'#FF6337'} className="text-center p-0 mb-3"><b>Add Doctor</b></DialogTitle>
-                        <p className="mb-0">BASIC INFORMATION</p>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Name"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="name"
+            <div className='d-flex align-items-center justify-content-between py-4'>
+                <h3 className='mb-0' style={{ color: '#FF6337' }}>Doctors</h3>
+                <Button type="button" variant="contained" onClick={handleClickOpen}>Doctor <AddIcon fontSize="small" /></Button>
+            </div>
+            <Dialog id='addModal' open={open}>
+                <DialogTitle style={{ fontSize: '24px' }} className='px-5 py-4 text-center '><b>{idForRowUpdate !== null ? 'Update' : 'Add'} Doctor</b></DialogTitle>
+                <DialogContent className='px-5 pb-4'>
+                    <form className='row' onSubmit={handleSubmit} style={{ width: "500px" }}>
+                        <div className='col-12'><p className="mb-0">Basic information:</p></div>
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className='m-0' margin="dense" id="drName" label="Name" type="text" fullWidth name='drname' variant="standard"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.name}
+                                value={values.drname}
                             />
-                            {errors.name && touched.name ? (
-                                <span className="d-block position-absolute form-error">{errors.name}</span>
+                            {errors.drname && touched.drname ? (
+                                <span className="d-block position-absolute form-error">{errors.drname}</span>
                             ) : null}
                         </div>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Designation"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="designation"
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className='m-0' margin="dense" id="drDesignation" label="Designation" type="text" fullWidth name='drdesignation' variant="standard"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.designation}
+                                value={values.drdesignation}
                             />
-                            {errors.designation && touched.designation ? (
-                                <span className="d-block position-absolute form-error">{errors.designation}</span>
+                            {errors.drdesignation && touched.drdesignation ? (
+                                <span className="d-block position-absolute form-error">{errors.drdesignation}</span>
                             ) : null}
                         </div>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Description"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="desc"
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className='m-0' margin="dense" id="drDesc" label="Description" type="text" fullWidth multiline rows={3} name='drdesc' variant="standard"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.Description}
+                                value={values.drdesc}
                             />
-                            {errors.desc && touched.desc ? (
-                                <span className="d-block form-error">{errors.desc}</span>
+                            {errors.drdesc && touched.drdesc ? (
+                                <span className="d-block position-absolute form-error">{errors.drdesc}</span>
                             ) : null}
                         </div>
-                        <p className="mb-0 mt-4">DOCTOR SOCIAL MEDIA INFO</p>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Twitter"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="twitter"
+                        <div className='col-12'><p className="mb-0 mt-3">Doctor social media info:</p></div>
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className="m-0" margin="dense" label="Twitter" fullWidth variant="standard" type="text" name="drtwitter"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.twitter}
+                                value={values.drtwitter}
+                                size="small"
                             />
-                            {errors.twitter && touched.twitter ? (
-                                <span className="d-block form-error">{errors.twitter}</span>
+                            {errors.drtwitter && touched.drtwitter ? (
+                                <span className="d-block form-error">{errors.drtwitter}</span>
                             ) : null}
                         </div>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Facebook"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="facebook"
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className="m-0" margin="dense" label="Facebook" fullWidth variant="standard" type="text" name="drfacebook"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.facebook}
+                                value={values.drfacebook}
+                                size="small"
                             />
-                            {errors.facebook && touched.facebook ? (
-                                <span className="d-block form-error">{errors.facebook}</span>
+                            {errors.drfacebook && touched.drfacebook ? (
+                                <span className="d-block form-error">{errors.drfacebook}</span>
                             ) : null}
                         </div>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Instagram"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="instagram"
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className="m-0" margin="dense" label="Instagram" fullWidth variant="standard" type="text" name="drinstagram"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.instagram}
+                                value={values.drinstagram}
+                                size="small"
                             />
-                            {errors.instagram && touched.instagram ? (
-                                <span className="d-block form-error">{errors.instagram}</span>
+                            {errors.drinstagram && touched.drinstagram ? (
+                                <span className="d-block form-error">{errors.drinstagram}</span>
                             ) : null}
                         </div>
-                        <div className="form_field mb-3 position-relative">
-                            <TextField
-                                className="m-0"
-                                margin="dense"
-                                label="Linkdin"
-                                fullWidth
-                                variant="standard"
-                                type="text"
-                                name="linkdin"
+                        <div className="col-12 mb-3 form_field position-relative">
+                            <TextField className="m-0" margin="dense" label="Linkdin" fullWidth variant="standard" type="text" name="drlinkdin"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.linkdin}
+                                value={values.drlinkdin}
+                                size="small"
                             />
-                            {errors.linkdin && touched.linkdin ? (
-                                <span className="d-block form-error">{errors.linkdin}</span>
+                            {errors.drlinkdin && touched.drlinkdin ? (
+                                <span className="d-block form-error">{errors.drlinkdin}</span>
                             ) : null}
                         </div>
-                        <div className="text-center mt-5">
-                            <Button type="submit" style={{ backgroundColor: '#FF6337' }} variant="contained">
-                                Add <AddIcon fontSize="small" />
-                            </Button>
+                        <div className='pt-3 col-12 text-center'>
+                            <Button className='me-3' onClick={handleClose}>Cancel</Button>
+                            <Button type="submit" variant="contained">{idForRowUpdate !== null ? 'Update' : 'Add'}</Button>
                         </div>
-                    </DialogContent>
-                </form>
-            </Dialog>
+                    </form>
+                </DialogContent>
+            </Dialog >
+            <div className='data_table' style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    columns={columns}
+                    rows={rows}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                />
+            </div>
         </>
     );
 }

@@ -1985,12 +1985,12 @@ input {
 #addModal > div:first-child {
   backdrop-filter: blur(5px);
 }
-.medicines_data_table [role="rowgroup"] {
+.data_table [role="rowgroup"] {
   background-color: rgba(0, 0, 0, 0.04);
   /* width: 100%; */
 }
-.medicines_data_table div[aria-label],
-.medicines_data_table div[data-field="id"] .MuiDataGrid-cellContent {
+.data_table div[aria-label],
+.data_table div[data-field="id"] .MuiDataGrid-cellContent {
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -2001,4 +2001,14 @@ input {
 .MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within,
 .MuiDataGrid-root .MuiDataGrid-cell:focus-within {
   outline: none !important;
+}
+.more_about_medi {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.serach_icon {
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }

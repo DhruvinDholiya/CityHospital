@@ -12,6 +12,7 @@ import VisitingDoctors from '../user/container/VisitingDoctors';
 import NotFound from '../user/component/NotFound';
 import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
+import Medicine from '../user/container/medicines/Medicine';
 
 function UserRoutes() {
   return (
@@ -30,6 +31,7 @@ function UserRoutes() {
         </Route>
         <Route path='*' element={<NotFound />} />
         <Route path='/auth' element={<Auth />} />
+        <Route path='/medicines' element={<Medicine />} />
       </Routes>
       <Footer />
     </>

@@ -34,7 +34,8 @@ function Header() {
                         <ul>
                             <li><Link to="/" className={`nav-link scrollto ${isActive('/')}`}>Home</Link></li>
                             <li><Link to="/departments" className={`nav-link scrollto ${isActive('/departments')}`}>Departments</Link></li>
-                            <li><Link to="/doctors" className={`nav-link scrollto ${isActive('doctors')}`}>Doctors</Link></li>
+                            <li><Link to="/doctors" className={`nav-link scrollto ${isActive('/doctors')}`}>Doctors</Link></li>
+                            <li><Link to="/medicines" className={`nav-link scrollto ${isActive('/medicines')}`}>Medicines</Link></li>
                             <li><Link to="/about" className={`nav-link scrollto ${isActive('/about')}`}>About</Link></li>
                             <li><Link to="/contact" className={`nav-link scrollto ${isActive('/contact')}`}>Contact</Link></li>
                         </ul>
@@ -47,8 +48,6 @@ function Header() {
                             <span className="d-none d-md-inline">Login/ Signup</span>
                         </Link>
                     )}
-                    <Link to="/admin" className='appointment-btn scollto'><span className="d-none d-md-inline">admin</span></Link>
-                    {/* ======================= */}
                 </div>
             </header>
         </div>

@@ -102,7 +102,7 @@ export default function Medicine() {
         { field: 'mediname', headerName: 'Name', flex: 2 },
         { field: 'mediprice', headerName: 'Price', flex: 1 },
         { field: 'mediexpiry', headerName: 'Expiry Date', flex: 2 },
-        { field: 'medidesc', headerName: 'Description', flex: 8 },
+        { field: 'medidesc', headerName: 'Description', flex: 6 },
         {
             field: 'action', headerName: 'Action', flex: 1, sortable: false, disableColumnMenu: true,
             renderCell: (params) => (
@@ -131,7 +131,7 @@ export default function Medicine() {
                 <Button type="button" variant="contained" onClick={handleClickOpen}>medicine <AddIcon fontSize="small" /></Button>
             </div>
             <Dialog id='addModal' open={open}>
-                <DialogTitle style={{ fontSize: '24px' }} className='px-5 pt-4 pb-0 text-center '><b>Add Medicine</b></DialogTitle>
+                <DialogTitle style={{ fontSize: '24px' }} className='px-5 pt-4 pb-0 text-center '><b>{idForRowUpdate !== null ? 'Update' : 'Add'} Medicine</b></DialogTitle>
                 <DialogContent className='px-5 pb-4'>
                     <form className='row' onSubmit={handleSubmit} style={{ width: "500px" }}>
                         <div className="col-12 mb-3 form_field position-relative">
@@ -176,12 +176,12 @@ export default function Medicine() {
                         </div>
                         <div className='pt-3 col-12 text-center'>
                             <Button className='me-3' onClick={handleClose}>Cancel</Button>
-                            <Button type="submit" variant="contained" endIcon={<AddIcon />}>Add</Button>
+                            <Button type="submit" variant="contained">{idForRowUpdate !== null ? 'Update' : 'Add'}</Button>
                         </div>
                     </form>
                 </DialogContent>
             </Dialog>
-            <div className='medicines_data_table' style={{ height: 400, width: '100%' }}>
+            <div className='data_table' style={{ height: 400, width: '100%' }}>
                 <DataGrid
                     columns={columns}
                     rows={rows}
