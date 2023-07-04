@@ -37,7 +37,7 @@ export default function Medicine() {
         initialValues: { mediname: "", mediprice: "", mediexpiry: "", medidesc: "" },
         validationSchema: validation,
         onSubmit: (values, action) => {
-            handleAddData(values);
+            handleSubmitData(values);
             action.resetForm()
         },
     });
@@ -53,7 +53,7 @@ export default function Medicine() {
         setIdForRowUpdate(null);
     };
 
-    const handleAddData = (data) => {
+    const handleSubmitData = (data) => {
         let id = Math.floor(Math.random() * 1000);
         let newData = { id, ...data };
 
@@ -63,7 +63,7 @@ export default function Medicine() {
             localStorage.setItem("_medicine", JSON.stringify([newData]))
             setData([newData])
         } else {
-            if (idForRowUpdate !== null) {
+            if (idForRowUpdate) {
                 l_medicine = l_medicine.map((item) =>
                     item.id === idForRowUpdate ? { ...newData } : item
                 )

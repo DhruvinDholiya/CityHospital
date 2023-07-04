@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomCard from '../../UI/CustomCard';
+import SadIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 function MedicineList({ mediData }) {
     return (
@@ -7,7 +8,7 @@ function MedicineList({ mediData }) {
             {
                 mediData.length === 0 ?
                     <div className='col-12 text-center'>
-                        <h1 className='py-5' style={{color: '#cccccc'}}>No data available</h1>
+                        <h1 className='py-5' style={{ color: '#cccccc' }}><SadIcon style={{fontSize: '45px'}} /> No data available</h1>
                     </div>
                     :
                     mediData.map((v, i) => {
