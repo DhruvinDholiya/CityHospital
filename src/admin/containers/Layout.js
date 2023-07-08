@@ -14,8 +14,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import VaccinesTwoToneIcon from "@mui/icons-material/VaccinesTwoTone";
 import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
-import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
+import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link } from "react-router-dom";
 
 const drawerWidth = 150;
@@ -91,6 +92,11 @@ const Drawer = styled(MuiDrawer, {
 const Layout = ({ children }) => {
     const [open, setOpen] = React.useState(false);
 
+    const adminLogout = () => {
+        alert('Do you know that you are doing logout to your dashboard.')
+        localStorage.removeItem('_loginStatus');
+    }
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -101,6 +107,11 @@ const Layout = ({ children }) => {
 
     const LinkData = [
         {
+            label: "Dashboard",
+            icon: <DashboardIcon />,
+            to: "/admin/dashboard",
+        },
+        {
             label: "Medicine",
             icon: <VaccinesTwoToneIcon />,
             to: "/admin/medicine",
@@ -109,11 +120,6 @@ const Layout = ({ children }) => {
             label: "Doctor",
             icon: <GroupTwoToneIcon />,
             to: "/admin/doctors",
-        },
-        {
-            label: "Other",
-            icon: <MoreHorizTwoToneIcon />,
-            to: "/admin/other",
         },
     ];
 
@@ -176,8 +182,29 @@ const Layout = ({ children }) => {
                         </ListItem>
                     ))}
                 </List>
+                <ListItemButton
+                    onClick={adminLogout}
+                    component={Link}
+                    to='/auth'
+                    sx={{
+                        maxHeight: 48,
+                        marginTop: 'auto',
+                        marginBottom: '15px',
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                    }}>
+                    <ListItemIcon
+                        sx={{
+                            minWidth: 0,
+                            mr: open ? 2 : "auto",
+                            justifyContent: "center",
+                        }}>
+                        <LogoutIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='Logout' sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, px: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, px: 3, minHeight: '100vh' }}>
                 <DrawerHeader />
                 {children}
             </Box>

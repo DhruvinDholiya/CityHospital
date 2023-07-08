@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Button from '../UI/button/Button';
 
 function Header() {
+    const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
+    const navigate = useNavigate();
+
     const isActive = (path) => {
         return location.pathname === path ? 'active' : '';
-    }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('_loginStatus');
+        navigate('/auth');
+    };
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -41,13 +51,12 @@ function Header() {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                    <Link to="/appointment" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an </span>
-                        Appointment</Link>
-                    {(location.pathname === '/' || location.pathname === '/auth') && (
-                        <Link to="/auth" className="appointment-btn scrollto">
-                            <span className="d-none d-md-inline">Login/ Signup</span>
-                        </Link>
-                    )}
+                    <Button path="/appointment" btnType={Link} classes={'ms-3'} >Make an Appointment</Button>
+
+                    {checklogin ?
+                        location.path === '/auth' ? null :
+                            <Button udf={handleLogout} classes={'ms-3'}>Logout</Button> :
+                        <Button path="/auth" btnType={Link} classes={'ms-3'}>Login/ Signup</Button>}
                 </div>
             </header>
         </div>

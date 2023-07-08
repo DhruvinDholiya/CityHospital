@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../UI/button/Button';
 
 const doctorsData = [
     {
@@ -42,7 +43,7 @@ function Doctors(props) {
                         <p>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
                             tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
                             ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.</p>
-                        <Link to={'/doctor/visiting_doctor'} className="my-4 appointment-btn scrollto">Visiting Doctors</Link>
+                            <Button path='/doctor/visiting_doctor' btnType={Link} classes={'my-4'}>Visiting Doctors</Button>
                     </div>
                     <div className="row">
                         {

@@ -1,169 +1,162 @@
-import React, { useState } from 'react';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+import Button from '../UI/button/Button';
+import Input from '../UI/input/Input';
+
 
 function Auth() {
+    const navigate = useNavigate();
     const [formType, setFormType] = useState('login');
 
+    const handleData = (values) => {
+        if (formType === 'login') {
+            const l_signUpData = JSON.parse(localStorage.getItem('_userSignUpData'));
+
+            if (values.email === 'admin@gmail.com' && values.password === 'Admin@123') {
+                localStorage.setItem('_loginStatus', JSON.stringify('AdminActive'));
+                navigate('/admin/dashboard');
+            } else if (l_signUpData !== null) {
+                let f_signUpData = l_signUpData.filter((data) => values.email === data.email && values.password === data.password);
+                if (f_signUpData.length === 1) {
+                    localStorage.setItem('_loginStatus', JSON.stringify('UserActive'));
+                    navigate('/');
+                } else {
+                    alert("Your entered Email or password doesn't match with registered data. Or if you have not account, Please first create account.");
+                }
+            } else {
+                alert("Your entered Email or password doesn't match with registered data. Or if you have not account, Please first create account.");
+            }
+        } else if (formType === 'signup') {
+            let l_signUpData = JSON.parse(localStorage.getItem('_userSignUpData'));
+            if (!l_signUpData) {
+                l_signUpData = [];
+            }
+            l_signUpData.push(values);
+            localStorage.setItem('_userSignUpData', JSON.stringify(l_signUpData));
+            setFormType('login');
+        }
+    };
+
     let validSchema = {};
-    let initalVal = {};
+    let initialVal = {};
 
     if (formType === 'login') {
         validSchema = {
-            email: Yup
-                .string()
-                .email()
-                .required(),
-            password: Yup
-                .string()
-                .min(8, 'Password is too short - should be 8 chars minimum.')
+            email: Yup.string().email().required(),
+            password: Yup.string().required().min(8, 'Password is too short - should be 8 chars minimum.')
                 .matches(
-                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                    "Must password have, Numbers , alphabets, and Special Character")
-                .required(),
+                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+                    'Must password have, Numbers , alphabets, and Special Character'
+                )
         };
-        initalVal = {
-            email: '',
-            password: ''
-        }
+        initialVal = { email: '', password: '' };
     } else if (formType === 'signup') {
         validSchema = {
-            name: Yup
-                .string()
-                .min(2)
-                .matches(/^[A-Za-z ]+$/, "Name must only contain characters.")
-                .required(),
-            email: Yup
-                .string()
-                .email()
-                .required(),
-            password: Yup
-                .string()
-                .min(8, 'Password is too short - should be 8 chars minimum.')
+            name: Yup.string().min(2).required().matches(/^[A-Za-z ]+$/, 'Name must only contain characters.'),
+            email: Yup.string().email().required(),
+            password: Yup.string().required().min(8, 'Password is too short - should be 8 chars minimum.')
                 .matches(
-                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                    "Must password have, Numbers , alphabets, and Special Character")
-                .required(),
-        }
-        initalVal = {
-            name: '',
-            email: '',
-            password: ''
-        }
+                    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+                    'Must password have, Numbers , alphabets, and Special Character'
+                )
+        };
+        initialVal = { name: '', email: '', password: '' };
     } else if (formType === 'forgot') {
         validSchema = {
-            email: Yup
-                .string()
-                .email()
-                .required(),
-        }
-        initalVal = {
-            email: ''
-        }
+            email: Yup.string().email().required()
+        };
+        initialVal = { email: '' };
     }
 
-    let authSchema = Yup.object(validSchema)
+    let authSchema = Yup.object(validSchema);
     const { errors, values, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         validationSchema: authSchema,
-        initialValues: initalVal,
+        initialValues: initialVal,
         enableReinitialize: true,
         onSubmit: (values, action) => {
-            console.log(values);
+            handleData(values);
             action.resetForm();
-
         }
+    });
 
-    })
     return (
         <main>
             <section id="appointment" className="appointment">
                 <div className="container">
                     <div className="section-title justify-content-center row">
-                        <div className='col-md-8'>
-                            <h2>
-                                {
-                                    formType === 'forgot' ? 'Forgot your password?'
-                                        : formType === 'login' ? 'Login' : 'Sign Up'
-                                }
-                            </h2>
+                        <div className="col-md-8">
+                            <h2>{formType === 'forgot' ? 'Forgot your password?' : formType === 'login' ? 'Login' : 'Sign Up'}</h2>
                         </div>
-                        <div className='col-md-10'>
-                            <p>
-                                {
-                                    formType === 'forgot' ?
-                                        <>You can reset your password here. <br /> Please enter the email address you'd like your password reset information sent to</>
-                                        : 'Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.'
-                                }
+                        <div className="col-md-10">
+                            <p>{formType === 'forgot' ? (
+                                <>You can reset your password here. <br /> Please enter the email address you'd like your password reset information sent to</>
+                            ) : ('Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.')}
                             </p>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="php-email-form">
                         <div className="row justify-content-center g-4">
-                            {
-                                formType === 'signup' ?
-                                    <div className="col-md-7">
-                                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name"
-                                            value={values.name}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                        />
-                                        {errors.name && touched.name ? <div className="validate">{errors.name}</div> : null}
-                                    </div>
-                                    : null
-                            }
+                            {formType === 'signup' ? (
+                                <div className="col-md-7">
+                                    <Input type="text" name="name" className={errors.name ? 'invalid' : null} id="name" placeholder="Your Name"
+                                        value={values.name}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    {errors.name && touched.name ? <div className="validate">{errors.name}</div> : null}
+                                </div>
+                            ) : null}
                             <div className="col-md-7">
-                                <input type="email" className="form-control" name="email" id="email" placeholder="Email Address"
+                                <Input type="email" name="email" className={errors.email ? 'invalid' : null} id="email" placeholder="Email Address"
                                     value={values.email}
                                     onChange={handleChange}
-                                    onBlur={handleBlur} />
+                                    onBlur={handleBlur}
+                                />
                                 {errors.email && touched.email ? <div className="validate">{errors.email}</div> : null}
                             </div>
-                            {
-                                formType === 'forgot' ? null
-                                    : <div className="col-md-7">
-                                        <input type="password" className="form-control" name="password" id="password" placeholder="Password"
-                                            value={values.password}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur} />
-                                        {errors.password && touched.password ? <div className="validate">{errors.password}</div> : null}
-                                    </div>
-                            }
+                            {formType === 'forgot' ? null : (
+                                <div className="col-md-7">
+                                    <Input type="password" className={errors.password ? 'invalid' : null} name="password" id="password" placeholder="Password"
+                                        value={values.password}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    {errors.password && touched.password ? <div className="validate">{errors.password}</div> : null}
+                                </div>
+                            )}
                         </div>
                         <div className="row text-center justify-content-center mt-2 g-3">
-                            <div className='col-md-7 mt-0 text-end'>
-                                {
-                                    formType === 'login' ?
-                                        <a href='#' onClick={() => setFormType('forgot')}>Forgot Password?</a>
-                                        : null
-                                }
+                            <div className="col-md-7 mt-0 text-end">
+                                {formType === 'login' ? (<a href="#" onClick={() => setFormType('forgot')}> Forgot Password? </a>) : null}
                             </div>
                             <div className="col-md-7 my-4">
                                 {
-                                    formType === "login" ?
-                                        <button type="submit">Login</button>
-                                        : formType === "signup" ?
-                                            <button type="submit">Sign Up</button>
-                                            : <button type="submit">Request reset link</button>
+                                    formType === 'login' ?
+                                        <Button>Login</Button>
+                                        : formType === 'signup' ?
+                                            <Button>Sign Up</Button>
+                                            : <Button>Request reset link</Button>
                                 }
                             </div>
                             <div className="col-md-7">
                                 <p>
                                     {
                                         formType === 'forgot' ?
-                                            <span>Back to<a href='#' onClick={() => setFormType('login')}> Login? </a></span>
-                                            : formType === 'login' ?
-                                                <span>Create an Account? <a href='#' onClick={() => setFormType('signup')}> Sign Up </a></span>
+                                            (<span> Back to<a href="#" onClick={() => setFormType('login')}> Login</a> </span>)
+                                            : formType === 'signup' ?
+                                                (<span> Have you already an account?<a href="#" onClick={() => setFormType('login')}> Login</a></span>)
                                                 :
-                                                <span>Already have an account? <a href='#' onClick={() => setFormType('login')}> Login </a></span>
+                                                (<span> Don't have an account?<a href="#" onClick={() => setFormType('signup')}> Sign Up</a></span>)
                                     }
                                 </p>
                             </div>
                         </div>
                     </form>
                 </div>
-            </section >
-        </main >
-
+            </section>
+        </main>
     );
 }
 

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from "yup";
+import Button from '../UI/button/Button';
 
 const SignUpSchema = Yup.object({
     name: Yup.string()
@@ -103,7 +104,7 @@ const Contact = () => {
                                         onBlur={handleBlur} />
                                     {errors.message && touched.message ? <span className='form-error'>{errors.message}</span> : null}
                                 </div>
-                                <div className="text-center mt-5"><button type="submit">Send Message</button></div>
+                                <div className="text-center mt-5"><Button>Send Massage</Button></div>
                             </form>
                         </div>
                     </div>

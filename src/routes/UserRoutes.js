@@ -13,8 +13,9 @@ import NotFound from '../user/component/NotFound';
 import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/medicines/Medicine';
+import PrivateRoute from '../routes/PrivateRoute';
 
-function UserRoutes() {
+const UserRoutes = () => {
   return (
     <>
       <Header />
@@ -24,14 +25,16 @@ function UserRoutes() {
         <Route path='/appointment' element={<Appointment />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/departments' element={<Departments />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/medicines' element={<Medicine />} />
+        </Route>
         <Route path='/doctors' element={<Doctors />} />
         <Route path='/doctor/'>
           <Route path=':id' element={<Doctor />} />
           <Route path='visiting_doctor' element={< VisitingDoctors />} />
         </Route>
-        <Route path='*' element={<NotFound />} />
         <Route path='/auth' element={<Auth />} />
-        <Route path='/medicines' element={<Medicine />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </>

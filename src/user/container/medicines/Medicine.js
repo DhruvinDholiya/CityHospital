@@ -10,7 +10,9 @@ function Medicine() {
 
     useEffect(() => {
         const l_medicine = JSON.parse(localStorage.getItem('_medicine'));
-        setData(l_medicine);
+        if(l_medicine) {
+            setData(l_medicine);
+        }
     }, []);
 
     const handleSearching = (value) => {
