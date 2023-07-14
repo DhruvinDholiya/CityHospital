@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from '../UI/button/Button';
 import Input from '../UI/input/Input';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 
 function Auth() {
@@ -85,45 +86,43 @@ function Auth() {
         <main>
             <section id="appointment" className="appointment">
                 <div className="container">
-                    <div className="section-title justify-content-center row">
-                        <div className="col-md-8">
-                            <h2>{formType === 'forgot' ? 'Forgot your password?' : formType === 'login' ? 'Login' : 'Sign Up'}</h2>
-                        </div>
-                        <div className="col-md-10">
-                            <p>{formType === 'forgot' ? (
+                    <TitleBox
+                        titleText={formType === 'forgot' ? 'Forgot your password?' : formType === 'login' ? 'Login' : 'Sign Up'}
+                        subTitleText={[
+                            formType === 'forgot' ? (
                                 <>You can reset your password here. <br /> Please enter the email address you'd like your password reset information sent to</>
-                            ) : ('Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.')}
-                            </p>
-                        </div>
-                    </div>
+                            )
+                                : ('Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.')
+                        ]}
+                    />
                     <form onSubmit={handleSubmit} className="php-email-form">
                         <div className="row justify-content-center g-4">
                             {formType === 'signup' ? (
                                 <div className="col-md-7">
-                                    <Input type="text" name="name" className={errors.name ? 'invalid' : null} id="name" placeholder="Your Name"
+                                    <Input type="text" name="name" id="name" placeholder="Your Name"
                                         value={values.name}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        errorText={errors.name && touched.name ? errors.name : null}
                                     />
-                                    {errors.name && touched.name ? <div className="validate">{errors.name}</div> : null}
                                 </div>
                             ) : null}
                             <div className="col-md-7">
-                                <Input type="email" name="email" className={errors.email ? 'invalid' : null} id="email" placeholder="Email Address"
+                                <Input type="email" name="email" id="email" placeholder="Email Address"
                                     value={values.email}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    errorText={errors.email && touched.email ? errors.email : null}
                                 />
-                                {errors.email && touched.email ? <div className="validate">{errors.email}</div> : null}
                             </div>
                             {formType === 'forgot' ? null : (
                                 <div className="col-md-7">
-                                    <Input type="password" className={errors.password ? 'invalid' : null} name="password" id="password" placeholder="Password"
+                                    <Input type="password" name="password" id="password" placeholder="Password"
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        errorText={errors.password && touched.password ? errors.password : null}
                                     />
-                                    {errors.password && touched.password ? <div className="validate">{errors.password}</div> : null}
                                 </div>
                             )}
                         </div>

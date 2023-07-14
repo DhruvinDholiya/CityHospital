@@ -1,4 +1,5 @@
 import React from 'react';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 function Home(props) {
     return (
@@ -47,12 +48,11 @@ function Home(props) {
             </section>
             <section id="services" className="services">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Our Facilities</h2>
-                        <p>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
-                            amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et
-                            suscipit pulvinar. Donec quis tristique lectus.</p>
-                    </div>
+                    <TitleBox
+                        titleText='Our Facilities'
+                        subTitleText={[
+                            'Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar. Donec quis tristique lectus.'
+                        ]} />
                     <div className="row">
                         <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
                             <div className="icon-box">
@@ -101,9 +101,7 @@ function Home(props) {
             </section>
             <section id="testimonials" className="testimonials">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Reviews</h2>
-                    </div>
+                    <TitleBox titleText='Reviews' />
                     <div className="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay={100}>
                         <div className="swiper-wrapper">
                             <div className="swiper-slide">
@@ -194,12 +192,9 @@ function Home(props) {
             </section>
             <section id="gallery" className="gallery">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Gallery</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-                            in iste officiis commodi quidem hic quas.</p>
-                    </div>
+                    <TitleBox
+                        titleText='Gallery'
+                        subTitleText={['Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit.Quisquam quos quisquam cupiditate.Et nemo qui impedit suscipit alias ea.Quia fugiat sit in iste officiis commodi quidem hic quas.']} />
                 </div>
                 <div className="container-fluid">
                     <div className="row no-gutters">
@@ -262,7 +257,7 @@ function Home(props) {
                     </div>
                 </div>
             </section>
-        </main>
+        </main >
     );
 }
 

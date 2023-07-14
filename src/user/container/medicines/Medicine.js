@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MedicineList from './MedicineList';
 import { Box, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import TitleBox from '../../UI/titlePart/TitleBox';
 
 function Medicine() {
     const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ function Medicine() {
 
     useEffect(() => {
         const l_medicine = JSON.parse(localStorage.getItem('_medicine'));
-        if(l_medicine) {
+        if (l_medicine) {
             setData(l_medicine);
         }
     }, []);
@@ -31,15 +32,11 @@ function Medicine() {
         <main>
             <section id="doctors" className="doctors">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Medicines</h2>
-                        <p>
-                            Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus,
-                            molestie vitae arcu et, tincidunt viverra erat. Quisque in lectus id nulla viverra
-                            sodales in a risus. Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu
-                            sagittis nec. Phasellus a eleifend elit.
-                        </p>
-                    </div>
+                    <TitleBox
+                        titleText='Medicines'
+                        subTitleText={[
+ '                           Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et, tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.'
+                        ]} />
                     <div className='row justify-content-center'>
                         <div className='col-6'>
                             <Box sx={{ width: '100%', display: 'flex', alignItems: 'flex-end' }}>

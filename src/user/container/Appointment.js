@@ -1,17 +1,16 @@
 import React from 'react';
 import Button from '../UI/button/Button';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 function Appointment(props) {
     return (
         <main>
             <section id="appointment" className="appointment">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Make an Appointment</h2>
-                        <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-                            blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-                            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
-                    </div>
+                    <TitleBox
+                        titleText='Make an Appointment'
+                        subTitleText={['Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibu blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.']}
+                    />
                     <form action="true" method="post" className="php-email-form">
                         <div className="row">
                             <div className="col-md-4 form-group">

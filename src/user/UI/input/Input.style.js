@@ -15,7 +15,7 @@ export const BaseInput = styled.input`
     color: #212529;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid ${(props) => (String(props.className).includes('invalid') ? '#FF0000' : '#ced4da')};
+    border: 1px solid ${({error}) => error ? '#FF0000' : '#ced4da'};
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -27,4 +27,12 @@ export const BaseInput = styled.input`
         color: #212529;
         background-color: #fff;
     }
+`
+export const Error = styled.span`
+    display: ${({error}) => error ? 'inline-block' : 'none'};
+    color: red;
+    margin: 0 0 15px 0;
+    font-weight: 400;
+    font-size: 11px;
+    position: absolute;
 `

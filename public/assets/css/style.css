@@ -267,31 +267,6 @@ ul {
   padding: 8px 0 8px 16px;
 }
 
-.navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #2c4964;
-  white-space: nowrap;
-  transition: 0.3s;
-  border-bottom: 2px solid #fff;
-  padding: 5px 2px;
-}
-
-.navbar a i {
-  font-size: 12px;
-  line-height: 0;
-  margin-left: 5px;
-}
-
-.navbar a:hover,
-.navbar .active,
-.navbar li:hover>a {
-  color: #FF6337;
-  border-color: #FF6337;
-}
-
 .navbar .dropdown ul {
   display: block;
   position: absolute;

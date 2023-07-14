@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 const doctorsData = [
     {
@@ -55,23 +56,27 @@ function Doctor(props) {
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="section-title text-start">
-                                <h2>Hello i'm Dr. {doctor.name} <br /> Introducing My Self.</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaaliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duisaute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
-                                <div className="signature_image text-end">
-                                    <img src="../assets/img/signature.png" alt="img" />
-                                </div>
+                            <TitleBox
+                                type='left'
+                                titleText={<>Hello i'm Dr. {doctor.name} <br /> Introducing My Self.</>}
+                                subTitleText={[
+                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magnaaliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duisaute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                    'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.'
+                                ]}
+                            />
+                            <div className="signature_image text-end">
+                                <img src="../assets/img/signature.png" alt="img" />
                             </div>
                         </div>
                     </div>
                     <div className='row bottom_part'>
                         <div className='col-10'>
-                            <div className='section-title text-start'>
-                                <span>My Skills</span>
-                                <h2>I Have Explained about Myself A bit</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                            </div>
+                            <TitleBox
+                                type='left'
+                                OrangeTitleText='My Skills' 
+                                titleText='I Have Explained about Myself A bit'        
+                                subTitleText={['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.']}                      
+                            />
                             <ul className='row skill_desc'>
                                 <li>Cancer Services</li>
                                 <li>Liver Transplant</li>

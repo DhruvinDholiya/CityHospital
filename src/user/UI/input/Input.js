@@ -1,17 +1,12 @@
 import React from 'react';
-import { BaseInput } from './Input.style';
+import { BaseInput, Error } from './Input.style';
 
-function Input({ type, name, id, className, placeholder, value, onChange, onBlur }) {
+function Input({ errorText, ...rest }) {
     return (
-        <BaseInput
-            type={type}
-            name={name}
-            className={className}
-            id={id}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur} />
+        <>
+            <BaseInput error={errorText} {...rest} />
+            <Error error={errorText}>{errorText}</Error>
+        </>
     );
 }
 

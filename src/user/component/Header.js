@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../UI/button/Button';
+import CustomLink from '../UI/link/Link';
 
 function Header() {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
-
-    const isActive = (path) => {
-        return location.pathname === path ? 'active' : '';
-    };
 
     const handleLogout = () => {
         localStorage.removeItem('_loginStatus');
@@ -35,19 +32,19 @@ function Header() {
             <header id="header" className="fixed-top">
                 <div className="container d-flex align-items-center">
                     <div className="logo">
-                        <Link to="/" className={`${isActive('/')}`}>
+                        <Link to="/">
                             <h1 className="logo me-auto">City</h1><br />
                             <h2 className="logo-tiny-text me-auto">Multispeciality Hospital</h2>
                         </Link>
                     </div>
                     <nav id="navbar" className="navbar order-last order-lg-0">
                         <ul>
-                            <li><Link to="/" className={`nav-link scrollto ${isActive('/')}`}>Home</Link></li>
-                            <li><Link to="/departments" className={`nav-link scrollto ${isActive('/departments')}`}>Departments</Link></li>
-                            <li><Link to="/doctors" className={`nav-link scrollto ${isActive('/doctors')}`}>Doctors</Link></li>
-                            <li><Link to="/medicines" className={`nav-link scrollto ${isActive('/medicines')}`}>Medicines</Link></li>
-                            <li><Link to="/about" className={`nav-link scrollto ${isActive('/about')}`}>About</Link></li>
-                            <li><Link to="/contact" className={`nav-link scrollto ${isActive('/contact')}`}>Contact</Link></li>
+                            <li><CustomLink to="/" as={Link}>Home</CustomLink></li>
+                            <li><CustomLink to="/departments" as={Link}>Departments</CustomLink></li>
+                            <li><CustomLink to="/doctors" as={Link}>Doctors</CustomLink></li>
+                            <li><CustomLink to="/medicines" as={Link}>Medicines</CustomLink></li>
+                            <li><CustomLink to="/about" as={Link}>About</CustomLink></li>
+                            <li><CustomLink to="/contact" as={Link}>Contact</CustomLink></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>

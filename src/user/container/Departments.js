@@ -1,13 +1,12 @@
 import React from 'react';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 function Departments(props) {
     return (
         <main>
             <section id="departments" className="departments">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Departments</h2>
-                    </div>
+                    <TitleBox titleText='Departments'/>
                     <div className="row">
                         <div className="col-lg-3">
                             <ul className="nav nav-tabs flex-column">

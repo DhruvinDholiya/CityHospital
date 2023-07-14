@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from "yup";
 import Button from '../UI/button/Button';
+import TitleBox from '../UI/titlePart/TitleBox';
 
 const SignUpSchema = Yup.object({
     name: Yup.string()
@@ -44,12 +45,10 @@ const Contact = () => {
         <main>
             <section id="contact" className="contact">
                 <div className="container">
-                    <div className="section-title">
-                        <h2>Contact</h2>
-                        <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-                            blandit quam volutpat sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet aliquet rhoncus quis,
-                            luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.</p>
-                    </div>
+                    <TitleBox
+                        titleText='Contact'
+                        subTitleText={['Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet aliquet rhoncus quis luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.']} 
+                    />
                 </div>
                 <div className="container">
                     <div className="row mt-5">
