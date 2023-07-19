@@ -45,6 +45,7 @@ function Header() {
                             <li><CustomLink to="/medicines" as={Link}>Medicines</CustomLink></li>
                             <li><CustomLink to="/about" as={Link}>About</CustomLink></li>
                             <li><CustomLink to="/contact" as={Link}>Contact</CustomLink></li>
+                            <li><CustomLink to="/counter" as={Link}>Counter</CustomLink></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>

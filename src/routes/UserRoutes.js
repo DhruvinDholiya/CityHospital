@@ -14,6 +14,7 @@ import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/medicines/Medicine';
 import PrivateRoute from '../routes/PrivateRoute';
+import Counter from '../user/container/Counter';
 
 const UserRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const UserRoutes = () => {
           <Route path='visiting_doctor' element={< VisitingDoctors />} />
         </Route>
         <Route path='/auth' element={<Auth />} />
+        <Route path='/counter' element={<Counter />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

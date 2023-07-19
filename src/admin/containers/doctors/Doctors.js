@@ -11,11 +11,21 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDoctorsData } from '../../../user/redux/action/doctor.action';
 
 export default function Doctors() {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = React.useState([]);
-    const [idForRowUpdate, setIdForRowUpdate] = React.useState(null)
+    const [idForRowUpdate, setIdForRowUpdate] = React.useState(null);
+
+    const dispatch = useDispatch();
+    const doctorVal = useSelector(state => state.doctors);
+
+    React.useEffect(() => {
+        dispatch(getDoctorsData());
+    }, [dispatch]);
+
 
     const validation = Yup.object({
         drname: Yup
@@ -120,34 +130,27 @@ export default function Doctors() {
     }, [])
 
     const columns = [
-        { field: 'id', headerName: 'ID', flex: 1 },
-        { field: 'drname', headerName: 'Name', flex: 2 },
-        { field: 'drdesignation', headerName: 'Designation', flex: 2 },
-        { field: 'drdesc', headerName: 'Description', flex: 4 },
-        { field: 'drtwitter', headerName: 'Twitter', flex: 2 },
-        { field: 'drfacebook', headerName: 'facebook', flex: 2 },
-        { field: 'drinstagram', headerName: 'instagram', flex: 2 },
-        { field: 'drlinkdin', headerName: 'linkdin', flex: 2 },
+        { field: 'name', headerName: 'Name', flex: 2 },
+        { field: 'post', headerName: 'Designation', flex: 2 },
+        { field: 'info', headerName: 'Description', flex: 4 },
+        { field: 'twitter', headerName: 'Twitter', flex: 2 },
+        { field: 'facebook', headerName: 'facebook', flex: 2 },
+        { field: 'instagram', headerName: 'instagram', flex: 2 },
+        { field: 'linkdin', headerName: 'linkdin', flex: 2 },
         {
             field: 'action', headerName: 'Action', flex: 1, sortable: false, disableColumnMenu: true,
             renderCell: (params) => (
                 <>
-                    <IconButton aria-label="delete" type='button' onClick={() => handleDelete(params.row.id)} >
-                        <DeleteIcon sx={{ fontSize: '20px' }} />
-                    </IconButton>
-                    <IconButton aria-label="edit" type='button' onClick={() => handleUpdate(params.row)} >
+                    <IconButton aria-label="edit" type='button' size='small' onClick={() => handleUpdate(params.row)} >
                         <EditIcon sx={{ fontSize: '20px' }} />
+                    </IconButton>
+                    <IconButton aria-label="delete" type='button' size='small' onClick={() => handleDelete(params.row.id)} >
+                        <DeleteIcon sx={{ fontSize: '20px' }} />
                     </IconButton>
                 </>
             )
         }
     ];
-
-    let l_doctors = JSON.parse(localStorage.getItem("_doctors"));
-    let rows = [];
-    if (l_doctors !== null) {
-        rows = l_doctors
-    }
 
     return (
         <>
@@ -245,7 +248,7 @@ export default function Doctors() {
             <div className='data_table' style={{ height: 400, width: '100%' }}>
                 <DataGrid
                     columns={columns}
-                    rows={rows}
+                    rows={doctorVal.doctors}
                     initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 5 },
@@ -258,3 +261,9 @@ export default function Doctors() {
         </>
     );
 }
+
+
+
+
+
+
