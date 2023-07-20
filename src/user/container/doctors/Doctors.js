@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../UI/button/Button';
-import TitleBox from '../UI/titlePart/TitleBox';
-import DoctorCard from '../UI/doctorCard/DoctorCard';
+import Button from '../../UI/button/Button';
+import DoctorCard from '../../UI/doctorCard/DoctorCard';
+import TitleBox from '../../UI/titlePart/TitleBox';
 
 const doctorsData = [
     {

@@ -1,44 +1,15 @@
 {
-    "doctors": [
-        {
-            "id": "101",
-            "name": "Atha Smith",
-            "post": "Chief Medical Officer",
-            "info": "Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.",
-            "twitter": "https://www.google.com",
-            "facebook": "https://www.google.com",
-            "instagram": "https://www.google.com",
-            "linkdin": "https://www.google.com"
-        },
-        {
-            "id": "102",
-            "name": "John White",
-            "post": "Anesthesiologist",
-            "info": "Aenean ac turpis ante. Mauris velit sapien.",
-            "twitter": "https://www.google.com",
-            "facebook": "https://www.google.com",
-            "instagram": "https://www.google.com",
-            "linkdin": "https://www.google.com"
-        },
-        {
-            "id": "103",
-            "name": "Umika Loha",
-            "post": "Cardiology",
-            "info": "Curabitur luctus eleifend odio. Phasellus placerat mi.",
-            "twitter": "https://www.google.com",
-            "facebook": "https://www.google.com",
-            "instagram": "https://www.google.com",
-            "linkdin": "https://www.google.com"
-        },
-        {
-            "id": "104",
-            "name": "Daimy Smith",
-            "post": "Neurosurgeon",
-            "info": "Morbi vulputate, tortor nec pellentesque molestie, eros nisi ornare purus.",
-            "twitter": "https://www.google.com",
-            "facebook": "https://www.google.com",
-            "instagram": "https://www.google.com",
-            "linkdin": "https://www.google.com"
-        }
-    ]
+  "doctors": [
+    {
+      "name": "Dhruvin Dholiya",
+      "designation": "Anesthesiologist",
+      "desc": "werwer",
+      "twitter": "https://www.google.com",
+      "image": "doctors-3.jpg",
+      "facebook": "https://www.google.com",
+      "instagram": "https://www.google.com",
+      "linkdin": "https://www.google.com",
+      "id": 1
+    }
+  ]
 }

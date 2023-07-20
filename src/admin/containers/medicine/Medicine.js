@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import AddForm from './AddForm';
+import AddMedicine from './AddMedicineForm';
 
 export default function Medicine() {
     const [data, setData] = React.useState([]);
@@ -74,7 +74,7 @@ export default function Medicine() {
 
     return (
         <>
-            <AddForm handleSubmitData={handleSubmitData} updateData={updateData} setUpdateData={setUpdateData} />
+            <AddMedicine handleSubmitData={handleSubmitData} updateData={updateData} setUpdateData={setUpdateData} />
             <DataGrid
                 columns={columns}
                 rows={data}

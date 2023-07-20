@@ -53,7 +53,7 @@ function Header() {
 
                     {checklogin ?
                         location.path === '/auth' ? null :
-                            <Button udf={handleLogout} classes={'ms-3'}>Logout</Button> :
+                            <Button onClick={handleLogout} classes={'ms-3'}>Logout</Button> :
                         <Button path="/auth" btnType={Link} classes={'ms-3'}>Login/ Signup</Button>}
                 </div>
             </header>

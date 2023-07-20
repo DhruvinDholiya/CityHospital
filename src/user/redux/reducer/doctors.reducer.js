@@ -7,13 +7,39 @@ const initState = {
 };
 
 export const doctorsReducer = (state = initState, action) => {
+    console.log(action)
     switch (action.type) {
         case ActionType.DOCTORS_SUCCESS:
             return {
                 ...state,
                 doctors: action.payload,
             }
+        case ActionType.DOCTORS_ADD:
+            return {
+                ...state,
+                doctors: state.doctors.concat(action.payload)
+            }
+        case ActionType.DOCTORS_DELETE:
+            return {
+                ...state,
+                doctors: state.doctors.filter((v) => v.id !== action.payload)
+            }
+        case ActionType.DOCTORS_UPDATE:
+            return {
+                ...state,
+                doctors: state.doctors.map((v) => {
+                    if (v.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return v
+                    }
+                })
+            }
+
         default:
             return state;
     }
 };
+
+
+

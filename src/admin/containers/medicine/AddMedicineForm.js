@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function AddForm({ handleSubmitData, updateData, setUpdateData}) {
+export default function AddMedicine({ handleSubmitData, updateData, setUpdateData}) {
     
     const [open, setOpen] = React.useState(false);
     

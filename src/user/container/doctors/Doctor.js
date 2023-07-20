@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
-import TitleBox from '../UI/titlePart/TitleBox';
+import TitleBox from '../../UI/titlePart/TitleBox';
 
 const doctorsData = [
     {
