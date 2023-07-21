@@ -6,6 +6,9 @@ import AddDoctor from './AddDoctorForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import CircularProgress from '@mui/material/CircularProgress';
+import SadIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+
 
 export default function Doctors() {
     const [update, setUpdate] = React.useState(null);
@@ -58,22 +61,31 @@ export default function Doctors() {
     ];
 
     return (
-        <>
-            <AddDoctor handleSubmitData={handleAddData} onUpdate={update} setUpdate={setUpdate}/>
-            <div className='data_table' style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    columns={columns}
-                    rows={doctorVal.doctors}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 5 },
-                        },
-                    }}
-                    pageSizeOptions={[5, 10]}
-                    checkboxSelection
-                />
-            </div>
-        </>
+        <div className='data_table' style={{ height: 400, width: '100%' }}>
+            {doctorVal.loading ?
+                <div style={{ height: 'calc(100vh - 64px' }} className='d-flex align-items-center justify-content-center'>
+                    <CircularProgress sx={{color: '#FF6337'}} />
+                </div> :
+                doctorVal.error ?
+                    <div style={{ height: "calc(100vh - 64px" }} className='d-flex align-items-center justify-content-center'>
+                        <h1 className='py-5' style={{ color: '#cccccc' }}><SadIcon style={{ fontSize: '45px', verticalAlign: 'sub' }} /> {doctorVal.error}</h1>
+                    </div> :
+                    <>
+                        <AddDoctor handleSubmitData={handleAddData} onUpdate={update} setUpdate={setUpdate} />
+                        <DataGrid
+                            columns={columns}
+                            rows={doctorVal.doctors}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: { page: 0, pageSize: 5 },
+                                },
+                            }}
+                            pageSizeOptions={[5, 10]}
+                            checkboxSelection
+                        />
+                    </>
+            }
+        </div>
     );
 }
 

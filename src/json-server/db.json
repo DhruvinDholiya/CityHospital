@@ -1,15 +1,14 @@
 {
   "doctors": [
     {
-      "name": "Dhruvin Dholiya",
+      "name": "Sprite",
       "designation": "Anesthesiologist",
-      "desc": "werwer",
+      "desc": "tert",
       "twitter": "https://www.google.com",
-      "image": "doctors-3.jpg",
       "facebook": "https://www.google.com",
       "instagram": "https://www.google.com",
       "linkdin": "https://www.google.com",
-      "id": 1
+      "id": 2
     }
   ]
 }

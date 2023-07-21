@@ -21,10 +21,6 @@ export default function AddDoctor({ handleSubmitData, onUpdate, setUpdate }) {
         formik.resetForm();
         setUpdate(null);
     }
-    const handleImageName = (path) => {
-       return path.split('\\').pop();
-    }
-
     const validation = Yup.object({
         name: Yup
             .string()
@@ -45,9 +41,6 @@ export default function AddDoctor({ handleSubmitData, onUpdate, setUpdate }) {
                 }
             })
             .required('Description is a required field'),
-        image: Yup
-            .mixed()
-            .required('Profile image is a required field'),
         twitter: Yup
             .string()
             .url()
@@ -67,10 +60,9 @@ export default function AddDoctor({ handleSubmitData, onUpdate, setUpdate }) {
     });
 
     const formik = useFormik({
-        initialValues: { name: "", designation: "", desc: "", twitter: "", image: null, facebook: "", instagram: "", linkdin: "" },
+        initialValues: { name: "", designation: "", desc: "", twitter: "", facebook: "", instagram: "", linkdin: "" },
         validationSchema: validation,
         onSubmit: (values, action) => {
-            values.image = handleImageName(values.image);
             handleSubmitData(values);
             action.resetForm();
             handleClose();
@@ -117,27 +109,6 @@ export default function AddDoctor({ handleSubmitData, onUpdate, setUpdate }) {
                                 <span className="d-block position-absolute form-error">{errors.designation}</span>
                             ) : null}
                         </div>
-                        <div className="col-12 mb-3 form_field position-relative">
-                            <label htmlFor="image">Select an image:</label>
-                            <TextField className='m-0' margin="dense"
-                                id="image"
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                label="Profile Image"
-                                variant="standard"
-                                fullWidth
-                                onChange={handleChange}
-                                value={values.image}
-                            />
-                            {errors.image && touched.image ? (
-                                <span className="d-block position-absolute form-error">{errors.image}</span>
-                            ) : null}
-                        </div>
-
-
-
-
                         <div className="col-12 mb-3 form_field position-relative">
                             <TextField className='m-0' margin="dense" id="desc" label="Description" type="text" fullWidth multiline rows={3} name='desc' variant="standard"
                                 onChange={handleChange}

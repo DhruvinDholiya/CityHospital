@@ -9,10 +9,23 @@ const initState = {
 export const doctorsReducer = (state = initState, action) => {
     console.log(action)
     switch (action.type) {
+        case ActionType.DOCTORS_lOADING:
+            return {
+                doctors: [],
+                loading: action.payload,
+                error: null
+            }
+        case ActionType.DOCTORS_ERROR:
+            return {
+                doctors: [],
+                loading: false,
+                error: action.payload
+            }
         case ActionType.DOCTORS_SUCCESS:
             return {
-                ...state,
                 doctors: action.payload,
+                loading: false,
+                error: null
             }
         case ActionType.DOCTORS_ADD:
             return {
