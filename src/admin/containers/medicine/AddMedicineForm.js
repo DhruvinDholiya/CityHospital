@@ -8,20 +8,19 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function AddMedicine({ handleSubmitData, updateData, setUpdateData}) {
-    
+export default function AddMedicine({ handleSubmitData }) {
+
     const [open, setOpen] = React.useState(false);
-    
+
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false)
-        setUpdateData(null)
         formik.resetForm()
     }
-    
+
     const validation = Yup.object({
         mediname: Yup.string().min(2).required('Product name is a required field'),
         mediprice: Yup.number().min(1).required('Price is a required field'),
@@ -48,13 +47,6 @@ export default function AddMedicine({ handleSubmitData, updateData, setUpdateDat
         },
     });
     const { handleBlur, handleChange, handleSubmit, touched, errors, values } = formik;
-
-    React.useEffect(() => {
-        if (updateData) {
-            formik.setValues(updateData)
-            handleClickOpen();
-        }
-    }, [updateData])
 
     return (
         <>

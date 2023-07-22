@@ -6,8 +6,8 @@ import AddDoctor from './AddDoctorForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import CircularProgress from '@mui/material/CircularProgress';
-import SadIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import Loader from '../../../user/UI/loader/Loader';
+import ErrorMsg from '../../../user/UI/errorMsg/ErrorMsg'
 
 
 export default function Doctors() {
@@ -63,13 +63,9 @@ export default function Doctors() {
     return (
         <div className='data_table' style={{ height: 400, width: '100%' }}>
             {doctorVal.loading ?
-                <div style={{ height: 'calc(100vh - 64px' }} className='d-flex align-items-center justify-content-center'>
-                    <CircularProgress sx={{color: '#FF6337'}} />
-                </div> :
+                <Loader style={{ height: 'calc(100vh - 64px' }} /> :
                 doctorVal.error ?
-                    <div style={{ height: "calc(100vh - 64px" }} className='d-flex align-items-center justify-content-center'>
-                        <h1 className='py-5' style={{ color: '#cccccc' }}><SadIcon style={{ fontSize: '45px', verticalAlign: 'sub' }} /> {doctorVal.error}</h1>
-                    </div> :
+                    <ErrorMsg style={{ height: "calc(100vh - 64px" }} text={doctorVal.error} /> :
                     <>
                         <AddDoctor handleSubmitData={handleAddData} onUpdate={update} setUpdate={setUpdate} />
                         <DataGrid
@@ -81,11 +77,10 @@ export default function Doctors() {
                                 },
                             }}
                             pageSizeOptions={[5, 10]}
-                            checkboxSelection
                         />
                     </>
             }
-        </div>
+        </div >
     );
 }
 

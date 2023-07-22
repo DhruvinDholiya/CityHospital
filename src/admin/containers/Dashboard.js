@@ -1,11 +1,9 @@
 import React from 'react';
-import SadIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import ErrorMsg from '../../user/UI/errorMsg/ErrorMsg';
 
-function Dashboard(props) {
+function Dashboard() {
     return (
-        <div style={{height: "calc(100% - 64px"}} className='d-flex align-items-center justify-content-center'>
-            <h1 className='py-5' style={{ color: '#cccccc' }}><SadIcon style={{fontSize: '40px', verticalAlign: 'sub'}} /> Data not available in dashboard. </h1>
-        </div>
+        <ErrorMsg style={{ height: "calc(100vh - 64px" }} text='Data not available in dashboard. ' />
     );
 }
 

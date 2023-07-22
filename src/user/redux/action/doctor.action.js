@@ -13,7 +13,7 @@ export const getDoctorsData = () => (dispatch) => {
                 })
                 .then((data) => dispatch({ type: ActionType.DOCTORS_SUCCESS, payload: data }))
                 .catch((error) => dispatch(getError(error.message)));
-        }, 2000);
+        }, 0);
     } catch (error) {
         dispatch(getError(error.message));
     }
@@ -65,9 +65,9 @@ export const updateDoctorData = (rowData) => (dispatch) => {
 }
 
 export const loadingDoctorsData = (status) => (dispatch) => {
-    dispatch({type: ActionType.DOCTORS_lOADING, payload: status})
+    dispatch({ type: ActionType.DOCTORS_lOADING, payload: status })
 }
 
 export const getError = (error) => (dispatch) => {
-    dispatch({type: ActionType.DOCTORS_ERROR, payload: error})
+    dispatch({ type: ActionType.DOCTORS_ERROR, payload: error })
 }
