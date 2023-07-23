@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ErrorMsg from '../../user/UI/errorMsg/ErrorMsg';
+import Loader from '../../user/UI/loader/Loader';
 
 function Dashboard() {
+    const [showLoader, setShowLoader] = useState(true);
+
+    setTimeout(() => {
+        setShowLoader(false);
+    }, 1500);
+
     return (
-        <ErrorMsg style={{ height: "calc(100vh - 64px" }} text='Data not available in dashboard. ' />
+        <>
+            {showLoader ? (
+                <Loader style={{ height: 'calc(100vh - 64px' }} />
+            ) : (
+                <ErrorMsg style={{ height: "calc(100vh - 64px)" }} text='Data not available in dashboard. ' />
+            )}
+        </>
     );
 }
 

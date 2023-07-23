@@ -13,7 +13,7 @@ export const getDoctorsData = () => (dispatch) => {
                 })
                 .then((data) => dispatch({ type: ActionType.DOCTORS_SUCCESS, payload: data }))
                 .catch((error) => dispatch(getError(error.message)));
-        }, 0);
+        }, 1500);
     } catch (error) {
         dispatch(getError(error.message));
     }

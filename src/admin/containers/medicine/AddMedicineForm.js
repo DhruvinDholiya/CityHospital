@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function AddMedicine({ handleSubmitData }) {
+export default function AddMedicine({ handleSubmitData, onUpdate, setUpdate }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -19,6 +19,7 @@ export default function AddMedicine({ handleSubmitData }) {
     const handleClose = () => {
         setOpen(false)
         formik.resetForm()
+        setUpdate(null);
     }
 
     const validation = Yup.object({
@@ -48,6 +49,12 @@ export default function AddMedicine({ handleSubmitData }) {
     });
     const { handleBlur, handleChange, handleSubmit, touched, errors, values } = formik;
 
+    React.useEffect(() => {
+        if (onUpdate) {
+            formik.setValues(onUpdate)
+            handleClickOpen()
+        }
+    }, [onUpdate]);
     return (
         <>
             <div className='d-flex align-items-center justify-content-between py-4'>
@@ -108,3 +115,5 @@ export default function AddMedicine({ handleSubmitData }) {
         </>
     );
 }
+
+
