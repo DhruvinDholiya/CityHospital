@@ -1,23 +1,27 @@
 import React from 'react';
 import CustomCard from '../../UI/CustomCard';
-import SadIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import Loader from '../../UI/loader/Loader';
+import Error from '../../UI/errorMsg/ErrorMsg'
 
-function MedicineList({ mediData }) {
+
+function MedicineList({ mediData, handleCart, loading, error }) {
     return (
         <>
             {
-                mediData.length === 0 ?
-                    <div className='col-12 text-center'>
-                        <h1 className='py-5' style={{ color: '#cccccc' }}><SadIcon style={{fontSize: '45px'}} /> No data available</h1>
-                    </div>
-                    :
-                    mediData.map((v, i) => {
-                        return (
-                            <div className="col-3" key={v.id}>
-                                <CustomCard medicine={v} />
-                            </div>
-                        )
-                    })
+                loading ?
+                    <Loader /> :
+                    error ?
+                        <Error className='py-5' text={error}/> :
+                        mediData.map((v) => {
+                            return (
+                                <div className="col-3" key={v.id}>
+                                    <CustomCard
+                                        btnText='Add to Cart'
+                                        cardData={v}
+                                        onclick={handleCart} />
+                                </div>
+                            )
+                        })
             }
         </>
     );

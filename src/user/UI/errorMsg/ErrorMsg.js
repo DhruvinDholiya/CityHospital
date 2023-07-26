@@ -9,10 +9,9 @@ const ErrorText = styled.h1`
 
 function ErrorMsg({ text, ...rest }) {
     return (
-        <ErrorWrapper {...rest} className='d-flex align-items-center justify-content-center'>
-            <ErrorText className='mb-0'>
-                <SadIcon style={{ fontSize: '45px', verticalAlign: 'sub' }} />{text}
-            </ErrorText>
+        <ErrorWrapper {...rest} className='d-flex gap-2 align-items-center justify-content-center'>
+            <SadIcon style={{ fontSize: '45px', verticalAlign: 'sub', color: '#cccccc' }} />
+            <ErrorText className='mb-0'>{text}</ErrorText>
         </ErrorWrapper>
     );
 }

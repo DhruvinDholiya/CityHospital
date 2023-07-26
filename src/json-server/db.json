@@ -26,8 +26,29 @@
       "mediname": "Dolo 650",
       "mediprice": "20",
       "mediexpiry": "2023-09-07",
-      "medidesc": "fffffffffffffffffffffffffffffffeeeeeeeeeeeeeeeeeeeeeeett",
+      "medidesc": "Medicines are chemicals or compounds used to cure, halt, or prevent disease; ease symptoms; or help in the diagnosis of illnesses.",
       "id": 1
+    },
+    {
+      "mediname": "Azithromycin",
+      "mediprice": "15",
+      "mediexpiry": "2023-08-03",
+      "medidesc": "Advances in medicines have enabled doctors to cure many diseases and save lives. These days, medicines come from a variety of sources.",
+      "id": 2
+    },
+    {
+      "mediname": "dolo 400",
+      "mediprice": "50",
+      "mediexpiry": "2023-08-05",
+      "medidesc": "Advances in medicines have enabled doctors to cure many diseases and save lives. These days, medicines come from a variety of sources.",
+      "id": 3
+    },
+    {
+      "mediname": "Losartan",
+      "mediprice": "25",
+      "mediexpiry": "2023-08-02",
+      "medidesc": "\nMedicines are chemicals or compounds used to cure, halt, or prevent disease; ease symptoms; or help in",
+      "id": 4
     }
   ]
 }

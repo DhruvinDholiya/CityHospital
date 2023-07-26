@@ -15,5 +15,7 @@ export const MEDICINE_ADD = 'MEDICINE_ADD';
 export const MEDICINE_DELETE = 'MEDICINE_DELETE';
 export const MEDICINE_UPDATE = 'MEDICINE_UPDATE';
 
-
-
+export const Add_TO_CART = 'Add_TO_CART';
+export const INCREMENT_QUANTITY = 'INC_QUNTITY';
+export const DECREMENT_QUANTITY = 'DEC_QUNTITY';
+export const REMOVE_ITEM = 'REMOVE_ITEM';

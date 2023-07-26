@@ -4,7 +4,7 @@ export const getMedicineData = () => (dispatch) => {
     try {
         dispatch(loadingMedicineData(true))
         setTimeout(() => {
-            fetch('http://localhost:3004/medicines')
+            fetch('http://localhost:3005/medicines')
                 .then((response) => {
                     if(response.ok) {
                         return  response.json();
@@ -13,7 +13,7 @@ export const getMedicineData = () => (dispatch) => {
                 })
                 .then((data) => dispatch({ type: ActionType.MEDICINE_SUCCESS, payload: data }))
                 .catch((error) => dispatch(errorMedicineData(error.message)));
-        }, 1500);
+        }, 500);
     } catch (error) {
         dispatch(errorMedicineData(error.message))
     }
@@ -21,7 +21,7 @@ export const getMedicineData = () => (dispatch) => {
 
 export const addMedicineData = (data) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/medicines', {
+        fetch('http://localhost:3005/medicines', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const addMedicineData = (data) => (dispatch) => {
 
 export const deleteMedicineData = (id) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/medicines/' + id, {
+        fetch('http://localhost:3005/medicines/' + id, {
             method: 'DELETE',
         })
             .then(dispatch({ type: ActionType.MEDICINE_DELETE, payload: id }))
@@ -50,7 +50,7 @@ export const deleteMedicineData = (id) => (dispatch) => {
 
 export const updateMedicineData = (data) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/medicines/' + data.id, {
+        fetch('http://localhost:3005/medicines/' + data.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

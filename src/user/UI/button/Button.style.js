@@ -30,9 +30,9 @@ export const SecondaryButton = styled(BaseButton)({
 export const OutlinedButton = styled(BaseButton)({
     background: 'none',
     color: '#FF6337',
-    border: '2px solid #FF6337',
+    border: '1px solid #FF6337',
     '&:hover': {
-        background: '#166ab5',
+        background: '#FF6337',
         color: '#fff',
     },
 })

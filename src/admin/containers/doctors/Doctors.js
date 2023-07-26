@@ -34,7 +34,7 @@ export default function Doctors() {
     }
 
     const handleDelete = (id) => {
-        dispatch(deleteDoctorData(id));
+            (deleteDoctorData(id));
     }
 
     const columns = [

@@ -4,9 +4,9 @@ export const getDoctorsData = () => (dispatch) => {
     try {
         dispatch(loadingDoctorsData(true));
         setTimeout(() => {
-            fetch('http://localhost:3004/doctors')
+            fetch('http://localhost:3005/doctors')
                 .then((response) => {
-                    if(response.ok) {
+                    if (response.ok) {
                         return response.json();
                     }
                     throw new Error('Somthing went wrong');
@@ -21,7 +21,7 @@ export const getDoctorsData = () => (dispatch) => {
 
 export const addDoctorsData = (data) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/doctors', {
+        fetch('http://localhost:3005/doctors', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const addDoctorsData = (data) => (dispatch) => {
 
 export const deleteDoctorData = (id) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/doctors/' + id, {
+        fetch('http://localhost:3005/doctors/' + id, {
             method: 'DELETE',
         })
             .then(dispatch({ type: ActionType.DOCTORS_DELETE, payload: id }))
@@ -50,7 +50,7 @@ export const deleteDoctorData = (id) => (dispatch) => {
 
 export const updateDoctorData = (rowData) => (dispatch) => {
     try {
-        fetch('http://localhost:3004/doctors/' + rowData.id, {
+        fetch('http://localhost:3005/doctors/' + rowData.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

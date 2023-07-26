@@ -2,16 +2,27 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../UI/button/Button';
 import CustomLink from '../UI/link/Link';
+import Badge from '@mui/material/Badge';
+import CartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+
 
 function Header() {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
+    const cartData = useSelector((state) => state.cart.items)
 
     const handleLogout = () => {
         localStorage.removeItem('_loginStatus');
         navigate('/auth');
     };
+
+    const cartState = useSelector(state => state.cart);
+    let addedCartData = 0;
+    if (cartState.items) {
+        addedCartData = cartState.items.reduce((acc, val, ind) => acc + val.quantity, 0);
+    }
 
     return (
         <div className="main-header">
@@ -55,6 +66,11 @@ function Header() {
                         location.path === '/auth' ? null :
                             <Button onClick={handleLogout} classes={'ms-3'}>Logout</Button> :
                         <Button path="/auth" btnType={Link} classes={'ms-3'}>Login/ Signup</Button>}
+                    <Link to='/cart'>
+                        <Badge className='ms-3' badgeContent={addedCartData} color="success">
+                            <CartIcon sx={{ color: '#2c4964' }} />
+                        </Badge>
+                    </Link>
                 </div>
             </header>
         </div>
