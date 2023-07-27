@@ -11,7 +11,6 @@ function Header() {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
-    const cartData = useSelector((state) => state.cart.items)
 
     const handleLogout = () => {
         localStorage.removeItem('_loginStatus');
@@ -66,11 +65,15 @@ function Header() {
                         location.path === '/auth' ? null :
                             <Button onClick={handleLogout} classes={'ms-3'}>Logout</Button> :
                         <Button path="/auth" btnType={Link} classes={'ms-3'}>Login/ Signup</Button>}
-                    <Link to='/cart'>
-                        <Badge className='ms-3' badgeContent={addedCartData} color="success">
-                            <CartIcon sx={{ color: '#2c4964' }} />
-                        </Badge>
-                    </Link>
+                    {
+                        cartState.items.length > 0 ?
+                            <Link to='/cart'>
+                                <Badge className='ms-3' badgeContent={addedCartData} color="success">
+                                    <CartIcon sx={{ color: '#2c4964' }} />
+                                </Badge>
+                            </Link> : null
+
+                    }
                 </div>
             </header>
         </div>
