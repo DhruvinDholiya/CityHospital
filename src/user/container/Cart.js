@@ -64,7 +64,6 @@ function Cart() {
                                                     <h5 className="mb-0 text-center">${item.quantity * item.mediprice}</h5>
                                                 </div>
                                                 <Button onClick={() => removeFromCart(item.pid)} classes='p-0 bg-transparent'><CloseIcon sx={{ color: '#cecece' }} /></Button>
-                                                <a href="#!" style={{ color: '#cecece' }}></a>
                                             </div>
                                         </div>
                                     </div>

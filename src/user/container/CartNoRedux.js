@@ -6,11 +6,13 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorMsg from '../UI/errorMsg/ErrorMsg';
 
-function CartNoRedux(props) {
+function CartNoRedux({setCartDataCount}) {
     const [mediData, setMediData] = useState([]);
     const [cartData, setCartData] = useState([]);
     
     let totleAmount = cartData.reduce((acc, val) => acc + val.mediprice * val.qty, 0);
+    
+    setCartDataCount(cartData.reduce((acc, val) => acc + val.qty, 0))
 
     useEffect(() => {
         fetch('http://localhost:3005/medicines')
@@ -27,6 +29,7 @@ function CartNoRedux(props) {
                 return { ...findMediData, ...cartMedicine };
             });
             setCartData(findCartData);
+
         }
     }, [mediData]);
 

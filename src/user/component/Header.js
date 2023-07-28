@@ -6,8 +6,7 @@ import Badge from '@mui/material/Badge';
 import CartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 
-
-function Header() {
+function Header({cartDataCount}) {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
@@ -20,7 +19,7 @@ function Header() {
     const cartState = useSelector(state => state.cart);
     let addedCartData = 0;
     if (cartState.items) {
-        addedCartData = cartState.items.reduce((acc, val, ind) => acc + val.quantity, 0);
+        addedCartData = cartState.items.reduce((acc, val) => acc + val.quantity, 0);
     }
 
     return (
@@ -76,7 +75,7 @@ function Header() {
 
                     }
                     <Link to='/cart-no-redux'>
-                        <Badge className='ms-3' badgeContent={0} color="success">
+                        <Badge className='ms-3' badgeContent={cartDataCount} color="success">
                             <CartIcon sx={{ color: '#2c4964' }} />
                         </Badge>
                     </Link>

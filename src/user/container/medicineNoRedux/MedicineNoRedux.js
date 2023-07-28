@@ -4,11 +4,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import TitleBox from '../../UI/titlePart/TitleBox';
 import CustomCard from '../../UI/CustomCard';
 
-function MedicineNoRedux(props) {
+function MedicineNoRedux({setCartDataCount}) {
     const [mediData, setMediData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    // const [mediIdArr, setMediIdArr] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3005/medicines')
@@ -30,6 +29,7 @@ function MedicineNoRedux(props) {
     };
 
     const handleCart = (id) => {
+        setCartDataCount(prev => prev + 1)
         let localData = JSON.parse(localStorage.getItem('cartMediIdArr'))
         if (localData && localData.length > 0) {
             let addedItem = localData.find((val) => val.pid === id);

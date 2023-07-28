@@ -20,9 +20,11 @@ import MedicineNoRedux from '../user/container/medicineNoRedux/MedicineNoRedux';
 import CartNoRedux from '../user/container/CartNoRedux';
 
 const UserRoutes = () => {
+  const [cartDataCount, setCartDataCount] = React.useState(0);
+  console.log(cartDataCount)
   return (
     <>
-      <Header />
+      <Header cartDataCount={cartDataCount} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -40,8 +42,8 @@ const UserRoutes = () => {
         <Route path='/auth' element={<Auth />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/counter' element={<Counter />} />
-        <Route path='/medicine-no-redux' element={<MedicineNoRedux />} />
-        <Route path='/cart-no-redux' element={<CartNoRedux />} />
+        <Route path='/medicine-no-redux' element={<MedicineNoRedux setCartDataCount={setCartDataCount}/>} />
+        <Route path='/cart-no-redux' element={<CartNoRedux setCartDataCount={setCartDataCount} />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
