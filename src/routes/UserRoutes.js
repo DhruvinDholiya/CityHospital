@@ -16,6 +16,8 @@ import Medicine from '../user/container/medicines/Medicine';
 import PrivateRoute from '../routes/PrivateRoute';
 import Counter from '../user/container/Counter';
 import Cart from '../user/container/Cart';
+import MedicineNoRedux from '../user/container/medicineNoRedux/MedicineNoRedux';
+import CartNoRedux from '../user/container/CartNoRedux';
 
 const UserRoutes = () => {
   return (
@@ -38,6 +40,8 @@ const UserRoutes = () => {
         <Route path='/auth' element={<Auth />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/counter' element={<Counter />} />
+        <Route path='/medicine-no-redux' element={<MedicineNoRedux />} />
+        <Route path='/cart-no-redux' element={<CartNoRedux />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

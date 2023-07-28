@@ -31,7 +31,7 @@ function Cart() {
         dispatch(removeItemFromCart(id));
     }
     return (
-        <section id="doctors" className="doctors">
+        <section id="cart" className="cart">
             <div className="container">
                 <TitleBox
                     titleText='Cart'

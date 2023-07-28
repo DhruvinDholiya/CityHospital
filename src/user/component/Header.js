@@ -56,6 +56,7 @@ function Header() {
                             <li><CustomLink to="/about" as={Link}>About</CustomLink></li>
                             <li><CustomLink to="/contact" as={Link}>Contact</CustomLink></li>
                             <li><CustomLink to="/counter" as={Link}>Counter</CustomLink></li>
+                            <li><CustomLink to="/medicine-no-redux" as={Link}>Medicines 2</CustomLink></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
@@ -74,6 +75,11 @@ function Header() {
                             </Link> : null
 
                     }
+                    <Link to='/cart-no-redux'>
+                        <Badge className='ms-3' badgeContent={0} color="success">
+                            <CartIcon sx={{ color: '#2c4964' }} />
+                        </Badge>
+                    </Link>
                 </div>
             </header>
         </div>
