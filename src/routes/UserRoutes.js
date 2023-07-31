@@ -18,10 +18,10 @@ import Counter from '../user/container/Counter';
 import Cart from '../user/container/Cart';
 import MedicineNoRedux from '../user/container/medicineNoRedux/MedicineNoRedux';
 import CartNoRedux from '../user/container/CartNoRedux';
+import Favourite from '../user/container/Favourite';
 
 const UserRoutes = () => {
   const [cartDataCount, setCartDataCount] = React.useState(0);
-  console.log(cartDataCount)
   return (
     <>
       <Header cartDataCount={cartDataCount} />
@@ -41,9 +41,10 @@ const UserRoutes = () => {
         </Route>
         <Route path='/auth' element={<Auth />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/favourite' element={<Favourite />} />
         <Route path='/counter' element={<Counter />} />
-        <Route path='/medicine-no-redux' element={<MedicineNoRedux setCartDataCount={setCartDataCount}/>} />
-        <Route path='/cart-no-redux' element={<CartNoRedux setCartDataCount={setCartDataCount} />} />
+        {/* <Route path='/medicine-no-redux' element={<MedicineNoRedux setCartDataCount={setCartDataCount}/>} /> */}
+        {/* <Route path='/cart-no-redux' element={<CartNoRedux setCartDataCount={setCartDataCount} />} /> */}
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

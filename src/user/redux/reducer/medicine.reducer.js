@@ -7,7 +7,6 @@ const initState = {
 }
 
 export const medicineReducer = (state = initState, action) => {
-    console.log(action)
     switch (action.type) {
         case ActionType.MEDICINE_lOADING:
             return {

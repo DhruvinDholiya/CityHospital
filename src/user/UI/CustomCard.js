@@ -5,18 +5,39 @@ import CardContent from '@mui/material/CardContent';
 import Button from '../UI/button/Button';
 import Typography from '@mui/material/Typography';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIconFilled from '@mui/icons-material/Favorite';
 
-function CustomCard({ cardData, btnText, onclick }) {
+function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavourite, favItmes }) {
+    let isFavorite = null;
+    if (favItmes) {
+        isFavorite = favItmes.some((item) => item.fid === cardData.id);
+    }
     return (
         <Card className="p-4 position-relative shadow" style={{ height: '100%', position: 'relative' }}>
             <CardContent className='p-0'>
-                <Typography variant="h5" sx={{
-                    fontWeight: '700',
-                    fontSize: '20px',
-                    color: '#2c4964'
-                }} component="div">
-                    {cardData.mediname}
-                </Typography>
+                <div className='d-flex justify-content-between align-items-center mb-4'>
+                    <Typography variant="h5" sx={{
+                        fontWeight: '700',
+                        fontSize: '20px',
+                        color: '#2c4964',
+                    }} component="div">
+                        {cardData.mediname}
+                    </Typography>
+                    {
+                        favItmes ?
+                            isFavorite ?
+                                <Button size="small" classes='p-0 bg-transparent' onClick={() => removeToFavourite(cardData.id)}>
+                                    <FavoriteIconFilled sx={{ color: '#FF6337' }} />
+                                </Button>
+                                :
+                                <Button size="small" classes='p-0 bg-transparent' onClick={() => addToFavourite(cardData.id)}>
+                                    <FavoriteIcon sx={{ color: '#FF6337' }} />
+                                </Button>
+                            : null
+                    }
+
+                </div>
                 <Typography sx={{ my: 1.5 }} variant="body2">
                     {cardData.medidesc}
                 </Typography>
@@ -36,7 +57,7 @@ function CustomCard({ cardData, btnText, onclick }) {
                     }
                 </CardActions>
             </CardContent>
-        </Card>
+        </Card >
     );
 }
 

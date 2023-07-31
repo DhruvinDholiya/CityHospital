@@ -5,8 +5,9 @@ import CustomLink from '../UI/link/Link';
 import Badge from '@mui/material/Badge';
 import CartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function Header({cartDataCount}) {
+function Header({ cartDataCount }) {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ function Header({cartDataCount}) {
     if (cartState.items) {
         addedCartData = cartState.items.reduce((acc, val) => acc + val.quantity, 0);
     }
+
+    const favouriteState = useSelector(state => state.favourites);
 
     return (
         <div className="main-header">
@@ -74,11 +77,20 @@ function Header({cartDataCount}) {
                             </Link> : null
 
                     }
-                    <Link to='/cart-no-redux'>
+                    {
+                        favouriteState.favItmes.length > 0 ?
+                            <Link to='/favourite'>
+                                <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
+                                    <FavoriteIcon sx={{ color: '#2c4964' }} />
+                                </Badge>
+                            </Link> : null
+
+                    }
+                    {/* <Link to='/cart-no-redux'>
                         <Badge className='ms-3' badgeContent={cartDataCount} color="success">
                             <CartIcon sx={{ color: '#2c4964' }} />
                         </Badge>
-                    </Link>
+                    </Link> */}
                 </div>
             </header>
         </div>

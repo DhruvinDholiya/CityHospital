@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TitleBox from '../../UI/titlePart/TitleBox';
 import CustomCard from '../../UI/CustomCard';
 
-function MedicineNoRedux({setCartDataCount}) {
+function MedicineNoRedux({ setCartDataCount }) {
     const [mediData, setMediData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
@@ -14,6 +14,9 @@ function MedicineNoRedux({setCartDataCount}) {
             .then((response) => response.json())
             .then((data) => setMediData(data))
             .catch((error) => console.log(error))
+        let localData = JSON.parse(localStorage.getItem('cartMediIdArr'));
+        let totalQty = localData.reduce((acc, val) => acc + val.qty, 0);
+        setCartDataCount(totalQty)
     }, [])
 
     const handleSearching = (value) => {

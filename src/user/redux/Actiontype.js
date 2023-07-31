@@ -19,3 +19,6 @@ export const Add_TO_CART = 'Add_TO_CART';
 export const INCREMENT_QUANTITY = 'INC_QUNTITY';
 export const DECREMENT_QUANTITY = 'DEC_QUNTITY';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+
+export const ADD_TO_FAVOURITE = 'ADD_TO_FAVOURITE';
+export const REMOVE_TO_FAVOURITE = 'REMOVE_TO_FAVOURITE';

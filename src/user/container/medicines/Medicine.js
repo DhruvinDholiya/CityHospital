@@ -6,6 +6,7 @@ import TitleBox from '../../UI/titlePart/TitleBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { addToCart } from '../../redux/action/cart.action';
+import { addToFavourtite } from '../../redux/action/favourite.action';
 
 function Medicine() {
     const [filteredData, setFilteredData] = useState([]);
@@ -13,6 +14,7 @@ function Medicine() {
 
     const dispatch = useDispatch();
     const medicineState = useSelector(state => state.medicines);
+    const favouriteState = useSelector(state => state.favourites);
 
     React.useEffect(() => {
         dispatch(getMedicineData());
@@ -34,6 +36,13 @@ function Medicine() {
         dispatch(addToCart(id));
     }
 
+    const addToFavourite = (id) => {
+        dispatch(addToFavourtite(id))
+    }
+
+    const removeToFavourite = (id) => {
+        dispatch(removeToFavourite(id))
+    }
     return (
         <main>
             <section id="doctors" className="doctors">
@@ -63,8 +72,11 @@ function Medicine() {
                         <MedicineList
                             mediData={searchValue !== '' ? filteredData : medicineState.medicines}
                             handleCart={handleCart}
+                            addToFavourite={addToFavourite}
+                            removeToFavourite={removeToFavourite}
                             loading={medicineState.loading}
                             error={medicineState.error}
+                            favItmes={favouriteState.favItmes}
                         />
                     </div>
                 </div>
