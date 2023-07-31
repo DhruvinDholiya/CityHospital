@@ -16,8 +16,6 @@ import Medicine from '../user/container/medicines/Medicine';
 import PrivateRoute from '../routes/PrivateRoute';
 import Counter from '../user/container/Counter';
 import Cart from '../user/container/Cart';
-import MedicineNoRedux from '../user/container/medicineNoRedux/MedicineNoRedux';
-import CartNoRedux from '../user/container/CartNoRedux';
 import Favourite from '../user/container/Favourite';
 
 const UserRoutes = () => {

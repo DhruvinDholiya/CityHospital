@@ -1,24 +1,24 @@
 {
   "doctors": [
     {
-      "name": "Sprite",
-      "designation": "Anesthesiologist",
-      "desc": "tertetertert",
-      "twitter": "https://www.google.com",
-      "facebook": "https://www.google.com",
-      "instagram": "https://www.google.com",
-      "linkdin": "https://www.google.com",
-      "id": 2
-    },
-    {
       "name": "dhruvin",
       "designation": "Anesthesiologist",
-      "desc": "huhuhuhuhuhu",
+      "desc": "14141414141",
       "twitter": "https://www.google.com",
       "facebook": "https://www.google.com",
       "instagram": "https://www.google.com",
       "linkdin": "https://www.google.com",
       "id": 3
+    },
+    {
+      "name": "Dhruvin Dholiya",
+      "designation": "Anesthesiologist",
+      "desc": "34534",
+      "twitter": "https://www.google.com",
+      "facebook": "https://www.google.com",
+      "instagram": "https://www.google.com",
+      "linkdin": "https://www.google.com",
+      "id": 4
     }
   ],
   "medicines": [

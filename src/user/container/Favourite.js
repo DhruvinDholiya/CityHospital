@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TitleBox from '../UI/titlePart/TitleBox';
 import CustomCard from '../UI/CustomCard';
+import { addToCart } from '../redux/action/cart.action';
 
 function Favourite() {
     const dispatch = useDispatch();
@@ -13,6 +14,10 @@ function Favourite() {
 
         return { ...filterData, ...item }
     })
+
+    const handleCart = (id) => {
+        dispatch(addToCart(id))
+    }
     return (
         <section id="favourite" className="favourite">
             <div className="container">
@@ -26,7 +31,7 @@ function Favourite() {
                         mediToFavData.map((val) => {
                             return (
                                 <div className="col-3" key={val.fid}>
-                                    <CustomCard cardData={val} btnText={'Add to Cart'}/>
+                                    <CustomCard cardData={val} onclick={handleCart} btnText={'Add to Cart'}/>
                                 </div>
                             )
                         })

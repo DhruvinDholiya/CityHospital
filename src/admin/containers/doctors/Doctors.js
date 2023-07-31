@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDoctorsData, deleteDoctorData, getDoctorsData, updateDoctorData } from '../../../user/redux/action/doctor.action';
+import { addDoctor, deleteDoctor, getDoctors, updateDoctor } from '../../../user/redux/action/doctor.action';
 import AddDoctor from './AddDoctorForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
@@ -16,15 +16,15 @@ export default function Doctors() {
     const doctorVal = useSelector(state => state.doctors);
 
     React.useEffect(() => {
-        dispatch(getDoctorsData());
+        dispatch(getDoctors());
     }, [dispatch]);
 
 
     const handleAddData = (data) => {
         if (update) {
-            dispatch(updateDoctorData(data));
+            dispatch(updateDoctor(data));
         } else {
-            dispatch(addDoctorsData(data));
+            dispatch(addDoctor(data));
         }
         setUpdate(null);
     }
@@ -34,7 +34,7 @@ export default function Doctors() {
     }
 
     const handleDelete = (id) => {
-            (deleteDoctorData(id));
+        dispatch(deleteDoctor(id));
     }
 
     const columns = [

@@ -8,11 +8,7 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIconFilled from '@mui/icons-material/Favorite';
 
-function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavourite, favItmes }) {
-    let isFavorite = null;
-    if (favItmes) {
-        isFavorite = favItmes.some((item) => item.fid === cardData.id);
-    }
+function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavourite, favItmes, favouriteTrue }) {
     return (
         <Card className="p-4 position-relative shadow" style={{ height: '100%', position: 'relative' }}>
             <CardContent className='p-0'>
@@ -25,13 +21,13 @@ function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavour
                         {cardData.mediname}
                     </Typography>
                     {
-                        favItmes ?
-                            isFavorite ?
-                                <Button size="small" classes='p-0 bg-transparent' onClick={() => removeToFavourite(cardData.id)}>
+                        favouriteTrue ?
+                            favItmes ?
+                                <Button size="small" classes='p-0 bg-transparent remove' onClick={() => removeToFavourite(cardData.id)}>
                                     <FavoriteIconFilled sx={{ color: '#FF6337' }} />
                                 </Button>
                                 :
-                                <Button size="small" classes='p-0 bg-transparent' onClick={() => addToFavourite(cardData.id)}>
+                                <Button size="small" classes='p-0 bg-transparent add' onClick={() => addToFavourite(cardData.id)}>
                                     <FavoriteIcon sx={{ color: '#FF6337' }} />
                                 </Button>
                             : null
@@ -43,7 +39,7 @@ function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavour
                 </Typography>
                 <Typography color="text.secondary">
                     <b color="text.primary">Price:</b> <CurrencyRupeeIcon fontSize="16px" />
-                    {cardData.mediprice} / pill
+                    {cardData.mediprice}
                 </Typography>
                 <Typography color="text.secondary">
                     <b color="text.primary">Ex. Date:</b> {cardData.mediexpiry}

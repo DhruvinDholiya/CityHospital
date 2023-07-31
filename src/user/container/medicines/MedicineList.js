@@ -4,14 +4,14 @@ import Loader from '../../UI/loader/Loader';
 import Error from '../../UI/errorMsg/ErrorMsg'
 
 
-function MedicineList({ mediData, handleCart, loading, error, addToFavourite, removeToFavourite, favItmes}) {
+function MedicineList({ mediData, handleCart, loading, error, addToFavourite, removeToFavourite, favItmes }) {
     return (
         <>
             {
                 loading ?
                     <Loader /> :
                     error ?
-                        <Error className='py-5' text={error}/> :
+                        <Error className='py-5' text={error} /> :
                         mediData.map((v, i) => {
                             return (
                                 <div className="col-3" key={v.id}>
@@ -21,8 +21,9 @@ function MedicineList({ mediData, handleCart, loading, error, addToFavourite, re
                                         onclick={handleCart}
                                         addToFavourite={addToFavourite}
                                         removeToFavourite={removeToFavourite}
-                                        favItmes={favItmes}
-                                        />
+                                        favItmes={favItmes ? favItmes.some((item) => item.fid === v.id) : null}
+                                        favouriteTrue = {true}
+                                    />
                                 </div>
                             )
                         })

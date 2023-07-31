@@ -6,7 +6,7 @@ import TitleBox from '../../UI/titlePart/TitleBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { addToCart } from '../../redux/action/cart.action';
-import { addToFavourtite } from '../../redux/action/favourite.action';
+import { addOnStoreAndAPI, removeOnStoreAndAPI } from '../../redux/action/favourite.action';
 
 function Medicine() {
     const [filteredData, setFilteredData] = useState([]);
@@ -37,11 +37,11 @@ function Medicine() {
     }
 
     const addToFavourite = (id) => {
-        dispatch(addToFavourtite(id))
+        dispatch(addOnStoreAndAPI(id))
     }
 
     const removeToFavourite = (id) => {
-        dispatch(removeToFavourite(id))
+        dispatch(removeOnStoreAndAPI(id))
     }
     return (
         <main>

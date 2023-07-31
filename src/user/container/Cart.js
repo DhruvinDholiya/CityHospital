@@ -6,6 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import { decrementQuantity, incrementQuantity, removeItemFromCart } from '../redux/action/cart.action';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 function Cart() {
     const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function Cart() {
                                                     <Button classes='p-2 rounded-0' onClick={() => quantityIncrement(item.pid)}><AddIcon sx={{ fontSize: '20px' }} /></Button>
                                                 </div>
                                                 <div style={{ minWidth: 85 }}>
-                                                    <h5 className="mb-0 text-center">${item.quantity * item.mediprice}</h5>
+                                                    <h5 className="mb-0 text-center"><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{item.quantity * item.mediprice}</h5>
                                                 </div>
                                                 <Button onClick={() => removeFromCart(item.pid)} classes='p-0 bg-transparent'><CloseIcon sx={{ color: '#cecece' }} /></Button>
                                             </div>
@@ -74,7 +75,7 @@ function Cart() {
                 </div>
                 {
                     cartState.items.length > 0 ?
-                        <h5 className='text-end my-4'><b>Totle Amount: </b><span className='d-inline-block text-start ps-4' style={{ minWidth: '163px' }}>$ {totleAmount}</span></h5>
+                        <h5 className='text-end my-4'><b>Totle Amount: </b><span className='d-inline-block text-start ps-4' style={{ minWidth: '163px' }}><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{totleAmount}</span></h5>
                         : null
                 }
             </div>
