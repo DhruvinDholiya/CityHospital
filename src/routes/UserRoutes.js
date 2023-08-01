@@ -19,10 +19,11 @@ import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
 
 const UserRoutes = () => {
-  const [cartDataCount, setCartDataCount] = React.useState(0);
+  // const [cartDataCount, setCartDataCount] = React.useState(0);
   return (
     <>
-      <Header cartDataCount={cartDataCount} />
+      {/* <Header cartDataCount={cartDataCount} /> */}
+      <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />

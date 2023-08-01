@@ -4,6 +4,7 @@ import Medicine from "../admin/containers/medicine/Medicine";
 import Layout from '../admin/containers/Layout';
 import Dashboard from '../admin/containers/Dashboard';
 import Doctors from '../admin/containers/doctors/Doctors';
+import Department from '../admin/containers/department/Department';
 
 function AdminRoutes() {
     return (
@@ -12,6 +13,7 @@ function AdminRoutes() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/medicine" element={<Medicine />} />
                 <Route path="/doctors" element={<Doctors />} />
+                <Route path="/department" element={<Department />} />
             </Routes>
         </Layout>
     )

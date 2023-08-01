@@ -7,7 +7,7 @@ import thunk from "redux-thunk"
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['medicines' , 'cart']
+    whitelist: ['medicines' , 'cart', 'favourites']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -17,6 +17,7 @@ import GroupTwoToneIcon from "@mui/icons-material/GroupTwoTone";
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import DepartmentIcon from '@mui/icons-material/ViewQuilt';
 import { Link } from "react-router-dom";
 
 const drawerWidth = 150;
@@ -121,6 +122,12 @@ const Layout = ({ children }) => {
             icon: <GroupTwoToneIcon />,
             to: "/admin/doctors",
         },
+        {
+            label: "Department",
+            icon: <DepartmentIcon />,
+            to: "/admin/department",
+        }
+        
     ];
 
     return (
