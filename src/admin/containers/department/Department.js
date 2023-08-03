@@ -7,8 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Loader from '../../../user/UI/loader/Loader';
 import ErrorMsg from '../../../user/UI/errorMsg/ErrorMsg'
-import { addDepartment, deleteDepartment, getDepartment, updateDepartment } from '../../../user/redux/action/department.action';
-
+import { addDepartment, fetchDepartment, deleteDepartment, updateDepartment } from '../../../user/redux/slice/DepartmentSlice';
 
 export default function Department() {
     const [update, setUpdate] = React.useState(null);
@@ -16,7 +15,7 @@ export default function Department() {
     const departmentVal = useSelector(state => state.department);
 
     React.useEffect(() => {
-        dispatch(getDepartment());
+        dispatch(fetchDepartment());
     }, []);
 
 
@@ -39,7 +38,7 @@ export default function Department() {
 
     const columns = [
         { field: 'name', headerName: 'Name', flex: 3 },
-        { field: 'desc', headerName: 'Description', flex: 10},
+        { field: 'desc', headerName: 'Description', flex: 10 },
         {
             field: 'action', headerName: 'Action', flex: 1, sortable: false, disableColumnMenu: true,
             renderCell: (params) => (
@@ -68,10 +67,10 @@ export default function Department() {
                             rows={departmentVal.department}
                             initialState={{
                                 pagination: {
-                                    paginationModel: { page: 0, pageSize: 5 },
+                                    paginationModel: { page: 0, pageSize: 10 },
                                 },
                             }}
-                            pageSizeOptions={[5, 10]}
+                            pageSizeOptions={[10, 20]}
                         />
                     </>
             }

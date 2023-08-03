@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 import TitleBox from '../UI/titlePart/TitleBox';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDepartment } from '../redux/action/department.action';
 import Loader from '../UI/loader/Loader'
+import { fetchDepartment } from '../redux/slice/DepartmentSlice';
+import ErrorMsg from '../UI/errorMsg/ErrorMsg';
 
 function Departments(props) {
     const dispatch = useDispatch();
-    const departmentData = useSelector((state) => state.department.department);
+    const departmentState = useSelector((state) => state.department);
 
     useEffect(() => {
-        dispatch(getDepartment());
+        dispatch(fetchDepartment());
     }, []);
     return (
         <>
             {
-                departmentData.length === 0 ? <Loader style={{ height: 'calc(100vh - 138px)' }} /> :
+                departmentState.loading ? <Loader style={{ height: 'calc(100vh - 138px)' }} /> :
+                    departmentState.error ? <ErrorMsg style={{height: 'calc(100vh - 138px)'}} text={departmentState.error}/> :
                     <main>
                         <section id="departments" className="departments">
                             <div className="container">
@@ -23,7 +25,7 @@ function Departments(props) {
                                     <div className="col-lg-3">
                                         <ul className="nav nav-tabs flex-column">
                                             {
-                                                departmentData.map((val, i) => {
+                                                departmentState.department.map((val, i) => {
                                                     return (
                                                         <li key={val.id} className='nav-item'>
                                                             <a className={i === 0 ? 'nav-link active show' : 'nav-link'} data-bs-toggle="tab" href={`#tab-${i + 1}`}>{val.name}</a>
@@ -36,16 +38,16 @@ function Departments(props) {
                                     <div className="col-lg-9 mt-4 mt-lg-0">
                                         <div className="tab-content">
                                             {
-                                                departmentData.map((val, i) => {
+                                                departmentState.department.map((val, i) => {
                                                     return (
-                                                        <div className={i === 0 ? 'tab-pane active show' : 'tab-pane'} id={`tab-${i + 1}`}>
+                                                        <div key={val.id} className={i === 0 ? 'tab-pane active show' : 'tab-pane'} id={`tab-${i + 1}`}>
                                                             <div className='row'>
                                                                 <div className="col-lg-8 details order-2 order-lg-1">
                                                                     <h3>{val.name}</h3>
                                                                     <p>{val.desc}</p>
                                                                 </div>
                                                                 <div className="col-lg-4 text-center order-1 order-lg-2">
-                                                                    <img src="../assets/img/departments-1.jpg" alt="img" className="img-fluid" />
+                                                                    <img src={`../assets/img/departments-${i+1}.jpg`} alt="img" className="img-fluid" />
                                                                 </div>
                                                             </div>
                                                         </div>

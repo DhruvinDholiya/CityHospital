@@ -45,3 +45,5 @@ export const putRequest = (path, data) => {
         data: JSON.stringify(data)
     })
 }
+
+

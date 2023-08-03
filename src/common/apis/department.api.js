@@ -15,3 +15,4 @@ export const deleteDepartmentData = (id) => {
 export const updateDepartmentData = (data) => {
     return putRequest('/department/' + data.id, data)
 }
+
