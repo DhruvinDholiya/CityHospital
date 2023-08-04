@@ -14,9 +14,9 @@ import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/medicines/Medicine';
 import PrivateRoute from '../routes/PrivateRoute';
-import Counter from '../user/container/Counter';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
+import Counter from '../user/context/Counter';
 
 const UserRoutes = () => {
   // const [cartDataCount, setCartDataCount] = React.useState(0);

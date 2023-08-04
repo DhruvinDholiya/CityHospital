@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../UI/button/Button';
 import CustomLink from '../UI/link/Link';
@@ -6,11 +6,14 @@ import Badge from '@mui/material/Badge';
 import CartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ThemeIcon from '@mui/icons-material/InvertColors';
+import ThemeContext from '../context/ThemeContext';
 
 function Header({ cartDataCount }) {
     const checklogin = JSON.parse(localStorage.getItem('_loginStatus'));
     const location = useLocation();
     const navigate = useNavigate();
+    const theme = useContext(ThemeContext);
 
     const handleLogout = () => {
         localStorage.removeItem('_loginStatus');
@@ -31,7 +34,30 @@ function Header({ cartDataCount }) {
                 <div className="container d-flex justify-content-between">
                     <div className="contact-info d-flex align-items-center">
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
-                        <i className="bi bi-phone" /> +91 9988776655
+                        <i className="bi bi-phone" /> <a href="tel:+91 9988776655">+91 9988776655</a>
+                    </div>
+                    <div>
+                    {
+                        cartState.items.length > 0 ?
+                            <Link to='/cart'>
+                                <Badge className='ms-3' badgeContent={addedCartData} color="success">
+                                    <CartIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                                </Badge>
+                            </Link> : null
+
+                    }
+                    {
+                        favouriteState.favItmes.length > 0 ?
+                            <Link to='/favourite'>
+                                <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
+                                    <FavoriteIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                                </Badge>
+                            </Link> : null
+
+                    }
+                    <Button onClick={() => theme.toggleTheme(theme.theme)} classes='ms-4 bg-transparent p-0' aria-label="theme">
+                        <ThemeIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                    </Button>
                     </div>
                     <div className="d-none d-lg-flex social-links align-items-center">
                         <a href="/" className="twitter"><i className="bi bi-twitter" /></a>
@@ -68,29 +94,6 @@ function Header({ cartDataCount }) {
                         location.path === '/auth' ? null :
                             <Button onClick={handleLogout} classes={'ms-3'}>Logout</Button> :
                         <Button path="/auth" btnType={Link} classes={'ms-3'}>Login/ Signup</Button>}
-                    {
-                        cartState.items.length > 0 ?
-                            <Link to='/cart'>
-                                <Badge className='ms-3' badgeContent={addedCartData} color="success">
-                                    <CartIcon sx={{ color: '#2c4964' }} />
-                                </Badge>
-                            </Link> : null
-
-                    }
-                    {
-                        favouriteState.favItmes.length > 0 ?
-                            <Link to='/favourite'>
-                                <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
-                                    <FavoriteIcon sx={{ color: '#2c4964' }} />
-                                </Badge>
-                            </Link> : null
-
-                    }
-                    {/* <Link to='/cart-no-redux'>
-                        <Badge className='ms-3' badgeContent={cartDataCount} color="success">
-                            <CartIcon sx={{ color: '#2c4964' }} />
-                        </Badge>
-                    </Link> */}
                 </div>
             </header>
         </div>
