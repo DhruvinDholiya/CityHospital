@@ -1,48 +1,71 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from '../UI/button/Button';
 import Input from '../UI/input/Input';
 import TitleBox from '../UI/titlePart/TitleBox';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 function Auth() {
-    const navigate = useNavigate();
     const [formType, setFormType] = useState('login');
+    const navigate = useNavigate();
 
-    const handleData = (values) => {
-        if (formType === 'login') {
-            const l_signUpData = JSON.parse(localStorage.getItem('_userSignUpData'));
+    const handleSignUp = (values) => {
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                onAuthStateChanged(auth, (user) => {
+                    sendEmailVerification(auth.currentUser)
+                        .then(() => {
+                            alert('Email varification sent')
+                            setFormType('login')
+                        })
+                        .catch((error) => {
+                            console.log(error.code, error.message)
+                        });
 
-            if (values.email === 'admin@gmail.com' && values.password === 'Admin@123') {
-                localStorage.setItem('_loginStatus', JSON.stringify('AdminActive'));
-                navigate('/admin/dashboard');
-            } else if (l_signUpData !== null) {
-                let f_signUpData = l_signUpData.filter((data) => values.email === data.email && values.password === data.password);
-                if (f_signUpData.length === 1) {
-                    localStorage.setItem('_loginStatus', JSON.stringify('UserActive'));
+                });
+                console.log(user)
+            })
+            .catch((error) => {
+                console.log(error.code, error.message)
+            });
+    }
+
+    const handleLogin = (values) => {
+        signInWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                if (user.emailVerified) {
+                    alert('Login Completed');
                     navigate('/');
                 } else {
-                    alert("Your entered Email or password doesn't match with registered data. Or if you have not account, Please first create account.");
+                    alert('You can not able to login without verify to email address.')
                 }
-            } else {
-                alert("Your entered Email or password doesn't match with registered data. Or if you have not account, Please first create account.");
-            }
-        } else if (formType === 'signup') {
-            let l_signUpData = JSON.parse(localStorage.getItem('_userSignUpData'));
-            if (!l_signUpData) {
-                l_signUpData = [];
-            }
-            l_signUpData.push(values);
-            localStorage.setItem('_userSignUpData', JSON.stringify(l_signUpData));
-            setFormType('login');
-        }
-    };
+            })
+            .catch((error) => {
+                console.log(error.code, error.message)
+            });
+    }
+
+    const handleForgot = (values) => {
+        sendPasswordResetEmail(auth,  values.email)
+            .then(() => {
+                console.log('Password reset email sent!')
+            })
+            .catch((error) => {
+                console.log(error.code, error.message)
+            });
+
+    }
+
+
 
     let validSchema = {};
     let initialVal = {};
-
     if (formType === 'login') {
         validSchema = {
             email: Yup.string().email().required(),
@@ -77,7 +100,13 @@ function Auth() {
         initialValues: initialVal,
         enableReinitialize: true,
         onSubmit: (values, action) => {
-            handleData(values);
+            if (formType === 'login') {
+                handleLogin(values);
+            } else if (formType === 'signup') {
+                handleSignUp(values);
+            } else if (formType === 'forgot') {
+                handleForgot(values);
+            }
             action.resetForm();
         }
     });
@@ -112,6 +141,7 @@ function Auth() {
                                     value={values.email}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    autoComplete="username"
                                     errorText={errors.email && touched.email ? errors.email : null}
                                 />
                             </div>
@@ -121,6 +151,7 @@ function Auth() {
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        autoComplete="current-password"
                                         errorText={errors.password && touched.password ? errors.password : null}
                                     />
                                 </div>
@@ -133,10 +164,10 @@ function Auth() {
                             <div className="col-md-7 my-4">
                                 {
                                     formType === 'login' ?
-                                        <Button>Login</Button>
+                                        <Button type='submit'>Login</Button>
                                         : formType === 'signup' ?
-                                            <Button>Sign Up</Button>
-                                            : <Button>Request reset link</Button>
+                                            <Button type='submit'>Sign Up</Button>
+                                            : <Button type='submit'>Request reset link</Button>
                                 }
                             </div>
                             <div className="col-md-7">

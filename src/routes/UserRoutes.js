@@ -16,7 +16,7 @@ import Medicine from '../user/container/medicines/Medicine';
 import PrivateRoute from '../routes/PrivateRoute';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
-import Counter from '../user/context/Counter';
+import Counter from '../user/container/Counter';
 
 const UserRoutes = () => {
   // const [cartDataCount, setCartDataCount] = React.useState(0);
@@ -52,3 +52,6 @@ const UserRoutes = () => {
 }
 
 export default UserRoutes;
+
+
+

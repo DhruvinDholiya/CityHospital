@@ -1,27 +1,27 @@
-import { createContext, useState, useContext } from 'react';
+// import { createContext, useState, useContext } from 'react';
 
-const CounterContext = createContext();
+// const CounterContext = createContext();
 
-export const CounterProvider = ({ children }) => {
-    const [count, setCount] = useState(0);
+// export const CounterProvider = ({ children }) => {
+//     const [count, setCount] = useState(0);
 
-    const handleIncrement = () => {
-        setCount(count + 1);
-    };
+//     const handleIncrement = () => {
+//         setCount(count + 1);
+//     };
 
-    const handleDecrement = () => {
-        if(count > 0) {
-            setCount(count - 1);
-        }
-    };
+//     const handleDecrement = () => {
+//         if(count > 0) {
+//             setCount(count - 1);
+//         }
+//     };
 
-    return (
-        <CounterContext.Provider value={{ count, handleIncrement, handleDecrement }}>
-            {children}
-        </CounterContext.Provider>
-    );
-};
+//     return (
+//         <CounterContext.Provider value={{ count, handleIncrement, handleDecrement }}>
+//             {children}
+//         </CounterContext.Provider>
+//     );
+// };
 
-export const useCounter = () => {
-    return useContext(CounterContext);
-};
+// export const useCounter = () => {
+//     return useContext(CounterContext);
+// };

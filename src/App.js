@@ -6,13 +6,12 @@ import PrivateRoute from './routes/PrivateRoute';
 import { Provider } from 'react-redux';
 import { configureStore } from './user/redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-import { CounterProvider } from './user/context/CounterContext';
+// import { CounterProvider } from './user/context/CounterContext';
 import { ThemeProvider } from './user/context/ThemeContext';
 
 function App() {
   const { store, persistor } = configureStore();
   return (
-    <CounterProvider>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ThemeProvider>
@@ -25,10 +24,10 @@ function App() {
           </ThemeProvider>
         </PersistGate>
       </Provider>
-    </CounterProvider>
   );
 }
 
 export default App;
+
 
 

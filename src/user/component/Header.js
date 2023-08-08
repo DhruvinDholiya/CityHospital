@@ -37,27 +37,19 @@ function Header({ cartDataCount }) {
                         <i className="bi bi-phone" /> <a href="tel:+91 9988776655">+91 9988776655</a>
                     </div>
                     <div>
-                    {
-                        cartState.items.length > 0 ?
-                            <Link to='/cart'>
-                                <Badge className='ms-3' badgeContent={addedCartData} color="success">
-                                    <CartIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
-                                </Badge>
-                            </Link> : null
-
-                    }
-                    {
-                        favouriteState.favItmes.length > 0 ?
-                            <Link to='/favourite'>
-                                <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
-                                    <FavoriteIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
-                                </Badge>
-                            </Link> : null
-
-                    }
-                    <Button onClick={() => theme.toggleTheme(theme.theme)} classes='ms-4 bg-transparent p-0' aria-label="theme">
-                        <ThemeIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
-                    </Button>
+                        <Link to='/cart'>
+                            <Badge className='ms-3' badgeContent={addedCartData} color="success">
+                                <CartIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                            </Badge>
+                        </Link>
+                        <Link to='/favourite'>
+                            <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
+                                <FavoriteIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                            </Badge>
+                        </Link>
+                        <Button onClick={() => theme.toggleTheme(theme.theme)} classes='ms-4 bg-transparent p-0' aria-label="theme">
+                            <ThemeIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                        </Button>
                     </div>
                     <div className="d-none d-lg-flex social-links align-items-center">
                         <a href="/" className="twitter"><i className="bi bi-twitter" /></a>
