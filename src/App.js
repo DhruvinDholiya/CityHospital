@@ -4,16 +4,18 @@ import UserRoutes from './routes/UserRoutes';
 import AdminRoutes from './routes/AdminRoutes';
 import PrivateRoute from './routes/PrivateRoute';
 import { Provider } from 'react-redux';
-import { configureStore } from './user/redux/store';
+import { persistor, store } from './user/redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-// import { CounterProvider } from './user/context/CounterContext';
 import { ThemeProvider } from './user/context/ThemeContext';
+import Alert from './user/UI/alert/Alert';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
-  const { store, persistor } = configureStore();
   return (
-      <Provider store={store}>
+    <Provider store={store}>
+      <SnackbarProvider maxSnack={3}>
         <PersistGate persistor={persistor}>
+          <Alert />
           <ThemeProvider>
             <Routes>
               <Route path="/*" element={<UserRoutes />} />
@@ -23,7 +25,8 @@ function App() {
             </Routes>
           </ThemeProvider>
         </PersistGate>
-      </Provider>
+      </SnackbarProvider>
+    </Provider>
   );
 }
 

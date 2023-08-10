@@ -4,62 +4,24 @@ import * as Yup from 'yup';
 import Button from '../UI/button/Button';
 import Input from '../UI/input/Input';
 import TitleBox from '../UI/titlePart/TitleBox';
-import { auth } from '../../firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginRequest, passwordForgotRequest, signupRequest } from '../redux/action/Auth.action';
 
 
 function Auth() {
     const [formType, setFormType] = useState('login');
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSignUp = (values) => {
-        createUserWithEmailAndPassword(auth, values.email, values.password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                onAuthStateChanged(auth, (user) => {
-                    sendEmailVerification(auth.currentUser)
-                        .then(() => {
-                            alert('Email varification sent')
-                            setFormType('login')
-                        })
-                        .catch((error) => {
-                            console.log(error.code, error.message)
-                        });
-
-                });
-                console.log(user)
-            })
-            .catch((error) => {
-                console.log(error.code, error.message)
-            });
+        dispatch(signupRequest(values));
     }
 
     const handleLogin = (values) => {
-        signInWithEmailAndPassword(auth, values.email, values.password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                if (user.emailVerified) {
-                    alert('Login Completed');
-                    navigate('/');
-                } else {
-                    alert('You can not able to login without verify to email address.')
-                }
-            })
-            .catch((error) => {
-                console.log(error.code, error.message)
-            });
+        dispatch(loginRequest(values));
     }
 
     const handleForgot = (values) => {
-        sendPasswordResetEmail(auth,  values.email)
-            .then(() => {
-                console.log('Password reset email sent!')
-            })
-            .catch((error) => {
-                console.log(error.code, error.message)
-            });
-
+        dispatch(passwordForgotRequest(values))
     }
 
 
