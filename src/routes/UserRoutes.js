@@ -8,7 +8,6 @@ import Contact from '../user/container/Contact';
 import Departments from '../user/container/Departments';
 import Doctors from '../user/container/doctors/Doctors';
 import Doctor from '../user/container/doctors/Doctor';
-import VisitingDoctors from '../user/container/VisitingDoctors';
 import NotFound from '../user/component/NotFound';
 import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
@@ -32,7 +31,6 @@ const UserRoutes = () => {
           <Route path='/doctors' element={<Doctors />} />
           <Route path='/doctor/'>
             <Route path=':id' element={<Doctor />} />
-            <Route path='visiting_doctor' element={< VisitingDoctors />} />
           </Route>
           <Route path='/cart' element={<Cart />} />
           <Route path='/favourite' element={<Favourite />} />

@@ -78,7 +78,7 @@ function Cart() {
                 </div>
                 {
                     cartState.items.length > 0 ?
-                        <h5 className='text-end my-4'><b>Totle Amount: </b><span className='d-inline-block text-start ps-4' style={{ minWidth: '163px' }}><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{totleAmount}</span></h5>
+                        <h5 className='text-end my-4 totle_cart_price'><b>Totle Amount: </b><span className='d-inline-block text-start ps-4' style={{ minWidth: '163px' }}><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{totleAmount}</span></h5>
                         : null
                 }
             </div>

@@ -43,9 +43,6 @@ function Doctors(props) {
                     <TitleBox
                         titleText='Doctors'
                         subTitleText={['Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et, tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.']} />
-                    <div className='text-center'>
-                        <Button path='/doctor/visiting_doctor' btnType={Link} classes={'mb-5'}>Visiting Doctors</Button>
-                    </div>
                     <div className="row">
                         {
                             doctorsData.map((doctor) => {

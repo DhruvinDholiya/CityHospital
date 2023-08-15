@@ -7,6 +7,8 @@ export const CardWrapper = styled.div`
     border-radius: 10px;
     display: flex;
     align-items: flex-start!important;
+    background-color: #FFFFFF;
+    height: 100%;
     &:hover img {
         transform: scale(1.1);
     }    

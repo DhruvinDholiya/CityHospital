@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../UI/button/Button';
 import CustomLink from '../UI/link/Link';
@@ -15,9 +15,21 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [openLogoutModal, setOpenLogoutModal] = React.useState(false);
+    const [HeaderScrolled, setHeaderScrolled] = React.useState(false);
 
     const theme = useContext(ThemeContext);
     const checklogin = useSelector((state) => state.auth.user);
+
+    const handleScroll = () => {
+        setHeaderScrolled(window.scrollY > 100);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const openLogoutAlert = () => {
         setOpenLogoutModal(true);
@@ -42,7 +54,7 @@ function Header() {
 
     return (
         <div className="main-header">
-            <div id="topbar" className="d-flex align-items-center fixed-top">
+            <div id="topbar" className={`d-flex align-items-center fixed-top ${HeaderScrolled ? 'topbar-scrolled' : ''}`}>
                 <div className="container d-flex justify-content-between">
                     <div className="contact-info d-flex align-items-center">
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
@@ -56,7 +68,7 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <header id="header" className="fixed-top">
+            <header id="header" className={`fixed-top ${HeaderScrolled ? 'header-scrolled' : ''}`}>
                 <div className="container d-flex align-items-center">
                     <div className="logo">
                         <Link to="/">
@@ -88,7 +100,7 @@ function Header() {
                                 <DialogTitle className="text-center p-5 pb-3" id="alert-dialog-title">
                                     <Typography variant="h4" sx={{ fontWeight: '700' }}>Are you sure?</Typography></DialogTitle>
                                 <DialogContent className="px-5">
-                                    <DialogContentText id="alert-dialog-description">Do you know that you are doing logout to your account.</DialogContentText>
+                                    <DialogContentText id="alert-dialog-description" className='text-center'>Hello, are you sure you want to logout your account? Remember that once your account is logged out you will not be able to access some pages.</DialogContentText>
                                 </DialogContent>
                                 <DialogActions className="justify-content-center p-5 pt-3">
                                     <Button onClick={closeLogoutAlert}>Close</Button>
@@ -98,19 +110,19 @@ function Header() {
                         </> :
                         <Button path="/auth" btnType={Link} classes={'ms-3'}>Login / Signup</Button>
                     }
+                    <Button onClick={() => theme.toggleTheme(theme.theme)} classes='ms-4 bg-transparent p-0' aria-label="theme">
+                        <ThemeIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                    </Button>
+                    <Link to='/favourite'>
+                        <Badge className='ms-3' badgeContent={favouriteState.favItmes.length} color="success">
+                            <FavoriteIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
+                        </Badge>
+                    </Link>
                     <Link to='/cart'>
                         <Badge className='ms-3' badgeContent={addedCartData} color="success">
                             <CartIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
                         </Badge>
                     </Link>
-                    <Link to='/favourite'>
-                        <Badge className='ms-4' badgeContent={favouriteState.favItmes.length} color="success">
-                            <FavoriteIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
-                        </Badge>
-                    </Link>
-                    <Button onClick={() => theme.toggleTheme(theme.theme)} classes='ms-4 bg-transparent p-0' aria-label="theme">
-                        <ThemeIcon sx={{ color: '#2c4964', fontSize: '20px' }} />
-                    </Button>
                 </div>
             </header>
         </div>

@@ -29,7 +29,7 @@ function Favourite() {
                     subTitleText={[
                         'Welcome to favourite. You can see here your favourite product. Thank you !!!'
                     ]} />
-                <div className="row justify-content-center py-5 g-4">
+                <div className="row justify-content-center pb-4 g-4">
                     {
                         mediToFavData.map((val) => {
                             return (

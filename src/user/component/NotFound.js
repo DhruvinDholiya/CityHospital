@@ -1,9 +1,10 @@
 import React from 'react';
+import ErrorMsg from '../UI/errorMsg/ErrorMsg';
 
 function NotFound(props) {
     return (
         <div className='text-center'>
-            <h1>Page Not Found</h1>
+            <ErrorMsg style={{ height: "calc(100vh - 350px)" }} text='Page not found' />
         </div>
     );
 }

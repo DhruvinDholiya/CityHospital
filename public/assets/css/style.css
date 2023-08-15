@@ -113,19 +113,27 @@ ul {
   padding: 20px !important;
 }
 
+main {
+  padding-bottom: 30px;
+}
+
 /*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
 #topbar {
   background: #fff;
-  height: 50px;
+  height: 40px;
   font-size: 14px;
-  transition: all 0.5s;
+  transition: all 0.2s;
   z-index: 996;
 }
 
 #topbar.topbar-scrolled {
   top: -40px;
+}
+
+#header.header-scrolled {
+  top: 0;
 }
 
 #topbar .contact-info a {
@@ -170,10 +178,10 @@ ul {
 --------------------------------------------------------------*/
 #header {
   background: #fff;
-  transition: all 0.5s;
+  transition: all 0.2s;
   z-index: 997;
   padding: 15px 0;
-  top: 50px;
+  top: 40px;
   box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
 }
 
@@ -200,7 +208,7 @@ ul {
 
 .logo-tiny-text {
   font-size: 16px;
-  color: #FF6337;
+  color: #FF6337 !important;
   margin-top: 4px;
 }
 
@@ -447,14 +455,15 @@ ul {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 90vh;
+  min-height: 750px;
   background: url("../img/hero-bg.jpg") top center;
   background-size: cover;
-  margin-bottom: -200px;
+  margin-bottom: -250px;
 }
 
 #hero .container {
   position: relative;
+  padding-bottom: 250px;
 }
 
 #hero h1 {
@@ -500,7 +509,6 @@ ul {
 @media (max-width: 992px) {
   #hero {
     margin-bottom: 0;
-    height: 100vh;
   }
 
   #hero .container {
@@ -519,17 +527,11 @@ ul {
   }
 }
 
-@media (max-height: 600px) {
-  #hero {
-    height: 110vh;
-  }
-}
-
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 20px 0;
+  padding: 30px 0;
   overflow: hidden;
 }
 
@@ -929,6 +931,8 @@ section {
   border: 1px solid #d5e1ed;
   padding: 80px 20px;
   transition: all ease-in-out 0.3s;
+  background-color: #FFFFFF;
+  width: 100%;
 }
 
 .services .icon-box .icon {
@@ -1207,7 +1211,7 @@ section {
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 20px;
-  color: #2c4964;
+  color: #2c4964 !important;
 }
 
 .doctor_details h4 {
@@ -1412,6 +1416,7 @@ section {
 .testimonials .testimonial-item p {
   font-style: italic;
   margin: 15px auto 15px auto;
+  color: #444444 !important
 }
 
 .testimonials .swiper-pagination {
@@ -1452,8 +1457,6 @@ section {
 --------------------------------------------------------------*/
 .gallery .gallery-item {
   overflow: hidden;
-  border-right: 3px solid #fff;
-  border-bottom: 3px solid #fff;
 }
 
 .gallery .gallery-item img {
@@ -1469,7 +1472,6 @@ section {
 --------------------------------------------------------------*/
 .contact .info {
   width: 100%;
-  background: #fff;
 }
 
 .contact .info i {
@@ -1515,7 +1517,6 @@ section {
 
 .contact .php-email-form {
   width: 100%;
-  background: #fff;
 }
 
 .contact .php-email-form .form-group {
@@ -1782,24 +1783,6 @@ section {
   height: 131px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .doctor_details {
   padding: 75px 0;
 }
@@ -1817,6 +1800,7 @@ section {
   -webkit-box-shadow: 0 10px 55px 5px rgba(44, 73, 100, 0.1);
   box-shadow: 0 10px 55px 5px rgba(44, 73, 100, 0.1);
   padding: 30px;
+  border-radius: 25px;
 }
 
 .doctor_details_image img {
@@ -1829,7 +1813,7 @@ section {
 .doctor_details_image span,
 .doctor_details .bottom_part .section-title span {
   display: block;
-  color: #FF6337;
+  color: #FF6337 !important;
   font-size: 14.5px;
   margin-top: 7px;
 }
@@ -1950,54 +1934,113 @@ section {
 input {
   appearance: none;
 }
+
 .app_items a:hover {
   color: inherit;
 }
-#addModal > div:first-child {
+
+#addModal>div:first-child {
   backdrop-filter: blur(5px);
 }
+
 .data_table [role="rowgroup"] {
   background-color: rgba(0, 0, 0, 0.04);
 }
+
 .data_table div[aria-label],
 .data_table div[data-field="id"] .MuiDataGrid-cellContent {
   text-transform: uppercase;
   font-weight: 600;
 }
+
 .MuiDataGrid-root .MuiDataGrid-columnHeader:not(:last-child),
 .MuiDataGrid-root .MuiDataGrid-cell:not(:last-child) {
   border-right: 1px solid rgba(224, 224, 224, 1);
 }
+
 .MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within,
 .MuiDataGrid-root .MuiDataGrid-cell:focus-within {
   outline: none !important;
 }
+
 .more_about_medi button {
   position: absolute;
   bottom: 24px;
   left: 24px;
 }
+
 .serach_icon {
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
 }
+
 .css-pwyk3z-MuiBadge-badge {
   transform: scale(0.9) translate(50%, -50%) !important;
 }
-.dark #topbar {
+
+.dark #header,
+.dark #footer {
   background-color: #192837;
 }
-.dark #header {
-  background-color: #2c4964;
+
+.dark #topbar,
+.dark main,
+.dark section {
+  background-color: #43596e;
 }
-.dark #topbar *:not(i),
+
 .dark .logo,
+.dark #topbar a,
+.dark #header svg,
+.dark #hero *,
+.dark h2:not(h2#alert-dialog-title),
+.dark h2+p,
+.dark #footer *,
+.dark .doctor_details * :not(i),
+.dark .doctors [data-testid="SearchIcon"],
+.dark .about .icon-boxes h3,
+.dark .contact .info h4,
+.dark .cart .totle_cart_price *{
+  color: #FFFFFF;
+}
+
+.dark .css-l4u8b9-MuiInputBase-root-MuiInput-root:before,
+.dark .cart .card {
+  border-color: #ffffff;
+}
+.dark #departments * {
+  color: #FFFFFF;
+  background-color: transparent !important;
+}
 .dark #navbar a {
   color: #FFFFFF;
   border-color: transparent;
 }
-.dark #navbar a:hover {
-  color: #FF6337;
-  border-color: #FF6337;
+.dark .css-l4u8b9-MuiInputBase-root-MuiInput-root:after {
+  border-bottom:  2px solid #FF6337;
+}
+.dark .doctors .row p,
+.dark .cart .card p,
+.dark .favourite .row p,
+.dark .counts .count-box p,
+.dark .services .icon-box p,
+.dark #alert-dialog-description {
+  color: #444444 !important;
+}
+.dark #navbar a:hover,
+.dark .departments .nav-link.active {
+  color: #FF6337 !important;
+  border-color: #FF6337 !important;
+  transition: all 0.5s;
+}
+
+.dark p,
+.dark label,
+.dark .services .icon-box:hover h4 a, .services .icon-box:hover p {
+  color: #f7f7f7 !important;
+}
+
+.dark .signature_image img {
+  filter: invert(100%);
 }
