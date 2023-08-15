@@ -1,41 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../UI/button/Button';
 import DoctorCard from '../../UI/doctorCard/DoctorCard';
 import TitleBox from '../../UI/titlePart/TitleBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDoctors } from '../../redux/action/doctor.action';
 
-const doctorsData = [
-    {
-        id: '1',
-        name: 'Atha Smith',
-        post: 'Chief Medical Officer',
-        info: 'Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.',
-        image: '../assets/img/doctors/doctors-1.jpg',
-    },
-    {
-        id: '2',
-        name: 'John White',
-        post: 'Anesthesiologist',
-        info: 'Aenean ac turpis ante. Mauris velit sapien.',
-        image: '../assets/img/doctors/doctors-2.jpg'
-    },
-    {
-        id: '3',
-        name: 'Umika Loha',
-        post: 'Cardiology',
-        info: 'Curabitur luctus eleifend odio. Phasellus placerat mi.',
-        image: '../assets/img/doctors/doctors-3.jpg'
-    },
-    {
-        id: '4',
-        name: 'Daimy Smith',
-        post: 'Neurosurgeon',
-        info: 'Morbi vulputate, tortor nec pellentesque molestie, eros nisi ornare purus.',
-        image: '../assets/img/doctors/doctors-4.jpg'
-    }
-]
-
-function Doctors(props) {
+function Doctors() {
+    const dispatch = useDispatch();
+    const doctorsData  = useSelector((state) => state.doctors.doctors);
+    
+    useEffect(() => {
+        dispatch(getDoctors());
+    },[])
     return (
         <main>
             <section id="doctors" className="doctors">
@@ -52,11 +28,11 @@ function Doctors(props) {
                                             variant='Horizontale'
                                             cardType={Link}
                                             path={'/doctor/' + doctor.id}
-                                            imgPath={doctor.image}
+                                            imgPath={'../assets/img/doctors/doctors-'+doctor.id+'.jpg'}
                                             imgAlt='img'
                                             drName={doctor.name}
                                             drPost={doctor.post}
-                                            drDesc={doctor.info}
+                                            drDesc={doctor.desc}
                                             socialMedia={[
                                                 <i className="ri-twitter-fill"></i>,
                                                 <i className="ri-facebook-fill"></i>,

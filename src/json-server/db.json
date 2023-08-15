@@ -1,9 +1,29 @@
 {
   "doctors": [
     {
-      "name": "dhruvin",
+      "name": "Atha Smith",
+      "designation": "Chief Medical Officer",
+      "desc": "Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.",
+      "twitter": "https://www.google.com",
+      "facebook": "https://www.google.com",
+      "instagram": "https://www.google.com",
+      "linkdin": "https://www.google.com",
+      "id": 1
+    },
+    {
+      "name": "John White",
       "designation": "Anesthesiologist",
-      "desc": "14141414141",
+      "desc": "Aenean ac turpis ante. Mauris velit sapien.",
+      "twitter": "https://www.google.com",
+      "facebook": "https://www.google.com",
+      "instagram": "https://www.google.com",
+      "linkdin": "https://www.google.com",
+      "id": 2
+    },
+    {
+      "name": "Umika Loha",
+      "designation": "Cardiology",
+      "desc": "Curabitur luctus eleifend odio. Phasellus placerat mi.",
       "twitter": "https://www.google.com",
       "facebook": "https://www.google.com",
       "instagram": "https://www.google.com",
@@ -11,9 +31,9 @@
       "id": 3
     },
     {
-      "name": "Dhruvin Dholiya",
-      "designation": "Anesthesiologist",
-      "desc": "34534f",
+      "name": "Daimy Smith",
+      "designation": "Neurosurgeon",
+      "desc": "Morbi vulputate, tortor nec pellentesque molestie, eros nisi ornare purus.",
       "twitter": "https://www.google.com",
       "facebook": "https://www.google.com",
       "instagram": "https://www.google.com",
@@ -46,9 +66,16 @@
     {
       "mediname": "Losartan",
       "mediprice": "25",
-      "mediexpiry": "2023-08-02",
+      "mediexpiry": "2023-08-22",
       "medidesc": "\nMedicines are chemicals or compounds used to cure, halt, or prevent disease; ease symptoms; or help in",
       "id": 4
+    },
+    {
+      "mediname": "Paracitamol",
+      "mediprice": "45",
+      "mediexpiry": "2023-08-24",
+      "medidesc": "\nMedicines are chemicals or compounds used to cure, halt, or prevent disease; ease symptoms; or help in",
+      "id": 5
     }
   ],
   "department": [
