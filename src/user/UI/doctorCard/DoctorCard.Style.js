@@ -11,7 +11,7 @@ export const CardWrapper = styled.div`
     height: 100%;
     &:hover img {
         transform: scale(1.1);
-    }    
+    }
 `
 export const ImgBox = styled.div`
     overflow: hidden;

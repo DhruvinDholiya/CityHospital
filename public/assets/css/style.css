@@ -354,19 +354,16 @@ main {
   color: #fff;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199.98px) {
   .mobile-nav-toggle {
     display: block;
-  }
-
-  .navbar ul {
-    display: none;
   }
 }
 
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
+  transform: scale(1) !important;
   top: 0;
   right: 0;
   left: 0;
@@ -384,13 +381,6 @@ main {
 
 .navbar-mobile ul {
   display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  background-color: #fff;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -455,15 +445,13 @@ main {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  min-height: 750px;
+  height: calc(100vh - 130px);
   background: url("../img/hero-bg.jpg") top center;
   background-size: cover;
-  margin-bottom: -250px;
 }
 
 #hero .container {
   position: relative;
-  padding-bottom: 250px;
 }
 
 #hero h1 {
@@ -507,17 +495,22 @@ main {
 }
 
 @media (max-width: 992px) {
-  #hero {
-    margin-bottom: 0;
-  }
-
-  #hero .container {
-    padding-bottom: 63px;
-  }
-
   #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  #hero h2 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #hero h1 {
+    font-size: 30px;
+    line-height: 35px;
   }
 
   #hero h2 {
@@ -1207,14 +1200,16 @@ section {
 }
 
 .doctors .member h4,
-.doctor_details h4 {
+.doctor_details h4,
+.medicine_details h4 {
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 20px;
   color: #2c4964 !important;
 }
 
-.doctor_details h4 {
+.doctor_details h4,
+.medicine_details h4 {
   margin-top: 25px;
 }
 
@@ -1436,9 +1431,34 @@ section {
   background-color: #FF6337;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767.98px) {
   .testimonials .testimonial-wrap {
     padding-left: 0;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .logo-tiny-text {
+    font-size: 14px;
+  }
+
+  section:not(#hero) h2 {
+    font-size: 26px !important;
+  }
+
+  .counts .count-box span {
+    font-size: 26px;
+  }
+
+  .services .icon-box h4 {
+    font-size: 20px;
+  }
+
+  .services .icon-box .icon {
+    height: 50px;
+    width: 50px;
   }
 
   .testimonials .testimonial-item {
@@ -1774,6 +1794,12 @@ section {
   height: 250px;
 }
 
+@media (max-width: 991.98px) {
+  .img-fluid {
+    height: 200px;
+  }
+}
+
 .img-doctor {
   max-width: 100%;
   height: 150px;
@@ -1783,7 +1809,8 @@ section {
   height: 131px;
 }
 
-.doctor_details {
+.doctor_details,
+.medicine_details {
   padding: 75px 0;
 }
 
@@ -1793,7 +1820,8 @@ section {
   margin-right: 0;
 }
 
-.doctor_details_image {
+.doctor_details_image,
+.medicine_details_image {
   max-width: 475px;
   text-align: center;
   background-color: #ffffff;
@@ -1801,9 +1829,11 @@ section {
   box-shadow: 0 10px 55px 5px rgba(44, 73, 100, 0.1);
   padding: 30px;
   border-radius: 25px;
+  margin: 0 auto;
 }
 
-.doctor_details_image img {
+.doctor_details_image img,
+.medicine_details_image img {
   width: 100%;
   min-height: 325px;
   object-fit: cover;
@@ -1811,28 +1841,34 @@ section {
 }
 
 .doctor_details_image span,
-.doctor_details .bottom_part .section-title span {
+.medicine_details_image span,
+.doctor_details .bottom_part .section-title span,
+.medicine_details .bottom_part .section-title span {
   display: block;
   color: #FF6337 !important;
   font-size: 14.5px;
   margin-top: 7px;
 }
 
-.doctor_details_image .social {
+.doctor_details_image .social,
+.medicine_details_image .social {
   margin-top: 25px;
 }
 
-.doctor_details_image .social li:first-child {
+.doctor_details_image .social li:first-child,
+.medicine_details_image .social li:first-child {
   margin-left: 0;
 }
 
-.doctor_details_image .social li {
+.doctor_details_image .social li,
+.medicine_details_image .social li {
   display: inline-block;
   margin-left: 2px;
   margin-right: 2px;
 }
 
-.doctor_details_image .social li a {
+.doctor_details_image .social li a,
+.medicine_details_image .social li a {
   display: block;
   color: #FF6337;
   width: 30px;
@@ -1845,7 +1881,8 @@ section {
   transition: 0.5s;
 }
 
-.doctor_details_image .social li a:hover {
+.doctor_details_image .social li a:hover,
+.medicine_details_image .social li a:hover {
   color: #ffffff;
   background-color: #FF6337;
   -webkit-transform: translateY(-2px);
@@ -1853,16 +1890,20 @@ section {
 }
 
 .doctor_details .section-title h2::before,
-.doctor_details .section-title h2::after {
+.doctor_details .section-title h2::after,
+.medicine_details .section-title h2::before,
+.medicine_details .section-title h2::after {
   left: 0;
 }
 
-.doctor_details .section-title {
+.doctor_details .section-title,
+.medicine_details .section-title {
   margin-top: 25px;
   padding-bottom: 0;
 }
 
-.doctor_details .bottom_part {
+.doctor_details .bottom_part,
+.doctor_details .medicine_details {
   padding-top: 50px;
 }
 
@@ -1895,7 +1936,7 @@ section {
 .skill_desc li::before {
   content: '';
   position: absolute;
-  height: 100%;
+  height: 25px;
   width: 25px;
   left: 0;
   top: 0;
@@ -1968,6 +2009,13 @@ input {
   bottom: 24px;
   left: 24px;
 }
+.more_about_medi a {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background-color: transparent;
+  color: #FF6337;
+}
 
 .serach_icon {
   right: 15px;
@@ -1998,10 +2046,12 @@ input {
 .dark h2+p,
 .dark #footer *,
 .dark .doctor_details * :not(i),
+.dark .medicine_details * :not(i),
 .dark .doctors [data-testid="SearchIcon"],
 .dark .about .icon-boxes h3,
 .dark .contact .info h4,
-.dark .cart .totle_cart_price *{
+.dark .cart .totle_cart_price *,
+.dark .mobile-nav-toggle {
   color: #FFFFFF;
 }
 
@@ -2009,17 +2059,21 @@ input {
 .dark .cart .card {
   border-color: #ffffff;
 }
+
 .dark #departments * {
   color: #FFFFFF;
   background-color: transparent !important;
 }
+
 .dark #navbar a {
   color: #FFFFFF;
   border-color: transparent;
 }
+
 .dark .css-l4u8b9-MuiInputBase-root-MuiInput-root:after {
-  border-bottom:  2px solid #FF6337;
+  border-bottom: 2px solid #FF6337;
 }
+
 .dark .doctors .row p,
 .dark .cart .card p,
 .dark .favourite .row p,
@@ -2027,6 +2081,11 @@ input {
 .dark .services .icon-box p,
 .dark #alert-dialog-description {
   color: #444444 !important;
+}
+.dark .doctor_details .bottom_part span,
+.dark .medicine_details .bottom_part span,
+.dark .medicine_details b {
+  color: #FF6337;
 }
 .dark #navbar a:hover,
 .dark .departments .nav-link.active {
@@ -2037,10 +2096,98 @@ input {
 
 .dark p,
 .dark label,
-.dark .services .icon-box:hover h4 a, .services .icon-box:hover p {
+.dark .services .icon-box:hover h4 a,
+.services .icon-box:hover p {
   color: #f7f7f7 !important;
 }
 
 .dark .signature_image img {
   filter: invert(100%);
+}
+@media only screen and (min-width: 1200px)  {
+  .navbar-mobile {
+    transform: scale(0) !important;
+  }
+}
+@media only screen and (max-width: 1199.98px) {
+  #navbar {
+    transform: scale(0);
+    position: fixed;
+    backdrop-filter: blur(3px);
+    justify-content: center;
+  }
+  #navbar ul li:last-child > * {
+    max-width: 100%;
+    margin: 20px auto 0;
+  }
+  #navbar * {
+    color: #ffffff !important;
+  }
+  #navbar li {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  #navbar li a {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 991.98px) {
+  .doctor_details_image,
+  .medicine_details_image {
+    margin-bottom: 50px;
+  }
+
+  .skill_desc li {
+    max-width: 50%;
+  }
+
+  .signature_image img {
+    margin-top: 0;
+    width: 100px;
+  }
+
+  .doctor_details,
+  .medicine_details {
+    padding: 30px 0;
+  }
+
+  #alert-dialog-title .css-1313egv-MuiTypography-root {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  body,
+  #alert-dialog-description {
+    font-size: 0.9rem;
+  }
+
+  .doctor_details_image img,
+  .medicine_details_image img {
+    min-height: 275px;
+  }
+
+  .skill_desc li {
+    max-width: 100%;
+  }
+
+  .contact .info h4 {
+    font-size: 18px;
+  }
+  #alert-dialog-title .css-1313egv-MuiTypography-root {
+    font-size: 24px;
+  }
+
+  .main-header {
+    height: 125px;
+  }
+  main {
+    padding-bottom: 10px;
+  }
+  #cart .card-body button.bg-transparent {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 }

@@ -7,7 +7,7 @@ function About(props) {
                 <div className="container">
                     <div className="row">
                         <div
-                            className="col-lg-9 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5 abouttop">
+                            className="col-lg-9 mt-md-4 mt-1 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5 abouttop">
                             <h3>Fusce nec risus at enim congue bibendum quis at augue. </h3>
                             <p>Proin tincidunt blandit fermentum. Ut gravida arcu non mi dapibus ullamcorper. Curabitur mollis, turpis eu
                                 pellentesque finibus, nisi ex mattis quam, mollis aliquet mi massa non nunc. Pellentesque id felis elit.

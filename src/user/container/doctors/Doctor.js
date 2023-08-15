@@ -21,7 +21,7 @@ function Doctor() {
                 <section className="doctor_details">
                     <div className="container">
                         <div className="row">
-                            <div className="col-5">
+                            <div className="col-lg-5">
                                 <div className="doctor_details_image">
                                     <img src={`../assets/img/doctors/doctors-${doctor.id}.jpg`} alt="img" />
                                     <h4>Dr. {doctor.name}</h4>
@@ -34,7 +34,7 @@ function Doctor() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-lg-6">
                                 <TitleBox
                                     type='left'
                                     titleText={<>Hello i'm Dr. {doctor.name} <br /> Introducing My Self.</>}

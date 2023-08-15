@@ -14,7 +14,7 @@ function MedicineList({ mediData, handleCart, loading, error, addToFavourite, re
                         <Error className='py-5' text={error} /> :
                         mediData.map((v, i) => {
                             return (
-                                <div className="col-3" key={v.id}>
+                                <div className="col-xl-3 col-lg-4 col-md-6 " key={v.id}>
                                     <CustomCard
                                         btnText='Add to Cart'
                                         cardData={v}

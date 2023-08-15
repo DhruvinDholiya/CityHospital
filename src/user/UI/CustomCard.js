@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIconFilled from '@mui/icons-material/Favorite';
+import CustomLink from './link/Link';
+import { Link } from 'react-router-dom';
 
 function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavourite, favItmes, favouriteTrue }) {
     return (
@@ -51,6 +53,7 @@ function CustomCard({ cardData, btnText, onclick, addToFavourite, removeToFavour
                             <Button size="small" classes='rounded px-3' onClick={() => onclick(cardData.id)}>{btnText}</Button>
                             : null
                     }
+                   <CustomLink to={'/medicine/' + cardData.id}as={Link}>See More</CustomLink>
                 </CardActions>
             </CardContent>
         </Card >

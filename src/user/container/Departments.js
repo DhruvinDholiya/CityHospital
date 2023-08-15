@@ -42,7 +42,7 @@ function Departments(props) {
                                                     return (
                                                         <div key={val.id} className={i === 0 ? 'tab-pane active show' : 'tab-pane'} id={`tab-${i + 1}`}>
                                                             <div className='row'>
-                                                                <div className="col-lg-8 details order-2 order-lg-1">
+                                                                <div className="col-lg-8 details mt-lg-0 mt-4 order-2 order-lg-1">
                                                                     <h3>{val.name}</h3>
                                                                     <p>{val.desc}</p>
                                                                 </div>

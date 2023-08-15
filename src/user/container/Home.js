@@ -15,28 +15,28 @@ function Home(props) {
             <section id="counts" className="counts">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3 col-md-6">
+                        <div className="col-lg-3 col-sm-6">
                             <div className="count-box">
                                 <i className="fas fa-user-md" />
                                 <span>23</span>
                                 <p>Doctors</p>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
+                        <div className="col-lg-3 col-sm-6 mt-5 mt-sm-0">
                             <div className="count-box">
                                 <i className="far fa-hospital" />
                                 <span>18</span>
                                 <p>Departments</p>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div className="col-lg-3 col-sm-6 mt-5 mt-lg-0">
                             <div className="count-box">
                                 <i className="fas fa-heartbeat" />
                                 <span>980</span>
                                 <p>Patients</p>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div className="col-lg-3 col-sm-6 mt-5 mt-lg-0">
                             <div className="count-box">
                                 <i className="fas fa-award" />
                                 <span>12</span>
@@ -198,57 +198,57 @@ function Home(props) {
                 </div>
                 <div className="container">
                     <div className="row g-4">
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-1.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-1.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-2.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-2.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-3.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-3.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-4.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-4.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-5.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-5.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-6.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-6.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-7.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-7.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-4">
-                            <div className="gallery-item">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div className="gallery-item text-center">
                                 <a href="assets/img/gallery/gallery-8.jpg" className="galelry-lightbox">
                                     <img src="assets/img/gallery/gallery-8.jpg" target="_blank" alt="img" className="img-fluid" />
                                 </a>

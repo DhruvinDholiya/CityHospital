@@ -42,20 +42,20 @@ function Cart() {
                     subTitleText={[
                         'Welcome to cart. You can see here your added product. Thank you !!!'
                     ]} />
-                <div className="row justify-content-center">
+                <div className="row justify-content-center px-sm-0 px-3">
                     {
                         mediToCartData.map((item) => {
                             return (
                                 <div key={item.pid} className="card mb-3 shadow-sm">
-                                    <div className="card-body">
-                                        <div className="d-flex g-5 justify-content-between">
-                                            <div className='w-50'>
+                                    <div className="card-body p-md-3 p-4">
+                                        <div className="d-flex flex-md-nowrap flex-wrap justify-content-md-between justify-content-end">
+                                            <div className='w-md-5'>
                                                 <h5 style={{
                                                     fontWeight: '700',
                                                     fontSize: '20px',
                                                     color: '#2c4964'
                                                 }}>{item.mediname}</h5>
-                                                <p className="small mb-0">{item.medidesc}</p>
+                                                <p className="small mb-md-0 mb-4 me-4">{item.medidesc}</p>
                                             </div>
                                             <div className="d-flex gap-3 flex-row align-items-center">
                                                 <div className='d-flex align-items-center justify-content-center'>
@@ -78,7 +78,7 @@ function Cart() {
                 </div>
                 {
                     cartState.items.length > 0 ?
-                        <h5 className='text-end my-4 totle_cart_price'><b>Totle Amount: </b><span className='d-inline-block text-start ps-4' style={{ minWidth: '163px' }}><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{totleAmount}</span></h5>
+                        <h5 className='text-end my-4 totle_cart_price'><b>Totle Amount: </b><span className='d-inline-block text-start ps-md-4' style={{ minWidth: '163px' }}><CurrencyRupeeIcon sx={{fontSize: '20px'}}/>{totleAmount}</span></h5>
                         : null
                 }
             </div>

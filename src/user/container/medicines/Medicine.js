@@ -60,7 +60,7 @@ function Medicine() {
                             'Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et, tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.'
                         ]} />
                     <div className='row justify-content-center'>
-                        <div className='col-6'>
+                        <div className='col-xl-6 col-lg-8 col-md-10 col-12'>
                             <Box sx={{ width: '100%', display: 'flex', alignItems: 'flex-end' }}>
                                 <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                                 <TextField

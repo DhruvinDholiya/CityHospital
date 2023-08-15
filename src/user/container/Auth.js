@@ -89,10 +89,10 @@ function Auth() {
                         titleText={formType === 'forgot' ? 'Forgot your password?' : formType === 'login' ? 'Login' : 'Sign Up'}
                         subTitleText={[
                             formType === 'forgot' ? (
-                                <>You can reset your password here. <br /> Please enter the email address you'd like your password reset information sent to</>
+                                <>You can reset your password here. <br className='d-md-block d-none' /> Please enter the email address you'd like your password reset information sent to</>
                             )
                                 : (<>
-                                Aenean enim orci, suscipit vitae sodales ac, semper in ex. <br /> Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</>)
+                                Aenean enim orci, suscipit vitae sodales ac, semper in ex. <br className='d-md-block d-none' /> Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</>)
                         ]}
                     />
                     <form onSubmit={handleSubmit} className="php-email-form">

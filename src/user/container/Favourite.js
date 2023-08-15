@@ -33,7 +33,7 @@ function Favourite() {
                     {
                         mediToFavData.map((val) => {
                             return (
-                                <div className="col-3" key={val.fid}>
+                                <div className="col-xl-3 col-lg-4 col-md-6" key={val.fid}>
                                     <CustomCard cardData={val} onclick={handleCart} btnText={'Add to Cart'}/>
                                 </div>
                             )

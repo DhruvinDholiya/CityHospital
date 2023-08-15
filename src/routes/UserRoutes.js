@@ -15,6 +15,7 @@ import Medicine from '../user/container/medicines/Medicine';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
 import PrivateRoute from '../routes/PrivateRoute';
+import MedicineInfo from '../user/container/medicines/MedicineInfo';
 
 const UserRoutes = () => {
   return (
@@ -28,6 +29,9 @@ const UserRoutes = () => {
         <Route path='/departments' element={<Departments />} />
         <Route element={<PrivateRoute />}>
           <Route path='/medicines' element={<Medicine />} />
+          <Route path='/medicine/'>
+            <Route path=':id' element={<MedicineInfo />} />
+          </Route>
           <Route path='/doctors' element={<Doctors />} />
           <Route path='/doctor/'>
             <Route path=':id' element={<Doctor />} />
