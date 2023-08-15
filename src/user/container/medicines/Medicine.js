@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { addToCart } from '../../redux/action/cart.action';
 import { addOnStoreAndAPI, removeOnStoreAndAPI } from '../../redux/action/favourite.action';
+import { setAlert } from '../../../user/redux/slice/AlertSlice';
 
 function Medicine() {
     const [filteredData, setFilteredData] = useState([]);
@@ -33,14 +34,20 @@ function Medicine() {
     };
 
     const handleCart = (id) => {
+        let addedCartItem = medicineState.medicines.find((val) => val.id === id)
+        dispatch(setAlert({ text:  addedCartItem.mediname + ' is successfully added in cart', color: 'success' }))
         dispatch(addToCart(id));
     }
 
     const addToFavourite = (id) => {
+        let addedFavouriteItem = medicineState.medicines.find((val) => val.id === id)
+        dispatch(setAlert({ text:  addedFavouriteItem.mediname + ' is successfully added in Favourite', color: 'success' }))
         dispatch(addOnStoreAndAPI(id))
     }
 
     const removeToFavourite = (id) => {
+        let removeFavouriteItem = medicineState.medicines.find((val) => val.id === id)
+        dispatch(setAlert({ text:  removeFavouriteItem.mediname + ' is successfully removed from Favourite', color: 'success' }))
         dispatch(removeOnStoreAndAPI(id))
     }
     return (

@@ -10,7 +10,6 @@ const initState = {
 export const fetchDepartment = createAsyncThunk(
     'department/fetch',
     async () => {
-        await new Promise((resolve, reject) => setTimeout(resolve, 2000))
         let response = await getDepartmentData();
         return response.data
     }

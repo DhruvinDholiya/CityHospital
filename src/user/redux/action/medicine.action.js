@@ -3,17 +3,15 @@ import * as ActionType from '../Actiontype';
 export const getMedicineData = () => (dispatch) => {
     try {
         dispatch(loadingMedicineData(true))
-        setTimeout(() => {
-            fetch('http://localhost:3005/medicines')
-                .then((response) => {
-                    if(response.ok) {
-                        return  response.json();
-                    }
-                    throw new Error('Somthing went wrong');
-                })
-                .then((data) => dispatch({ type: ActionType.MEDICINE_SUCCESS, payload: data }))
-                .catch((error) => dispatch(errorMedicineData(error.message)));
-        }, 500);
+        fetch('http://localhost:3005/medicines')
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Somthing went wrong');
+            })
+            .then((data) => dispatch({ type: ActionType.MEDICINE_SUCCESS, payload: data }))
+            .catch((error) => dispatch(errorMedicineData(error.message)));
     } catch (error) {
         dispatch(errorMedicineData(error.message))
     }

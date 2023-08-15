@@ -4,11 +4,9 @@ import * as ActionType from '../Actiontype';
 export const getDepartment = () => (dispatch) => {
     try {
         dispatch(loadingDepartmentData(true));
-        setTimeout(() => {
-            getDepartmentData()
-                .then((response) => dispatch({ type: ActionType.DEPARTMENT_GET, payload: response.data }))
-                .catch((error) => dispatch(getError(error.message)))
-        }, 1500);
+        getDepartmentData()
+            .then((response) => dispatch({ type: ActionType.DEPARTMENT_GET, payload: response.data }))
+            .catch((error) => dispatch(getError(error.message)))
     } catch (error) {
         dispatch(getError(error.message));
     }
@@ -25,7 +23,6 @@ export const addDepartment = (data) => (dispatch) => {
 }
 
 export const deleteDepartment = (id) => (dispatch) => {
-    console.log('hello')
     try {
         deleteDepartmentData(id)
             .then(dispatch({ type: ActionType.DEPARTMENT_DELETE, payload: id }))

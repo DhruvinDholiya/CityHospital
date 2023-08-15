@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Loader from '../../../user/UI/loader/Loader';
 import ErrorMsg from '../../../user/UI/errorMsg/ErrorMsg'
 import { addDepartment, fetchDepartment, deleteDepartment, updateDepartment } from '../../../user/redux/slice/DepartmentSlice';
+import { setAlert } from '../../../user/redux/slice/AlertSlice';
 
 export default function Department() {
     const [update, setUpdate] = React.useState(null);
@@ -22,8 +23,10 @@ export default function Department() {
     const handleAddData = (data) => {
         if (update) {
             dispatch(updateDepartment(data));
+            dispatch(setAlert({text: 'Department successfully update', color: 'success'}))
         } else {
             dispatch(addDepartment(data));
+            dispatch(setAlert({text: 'Department successfully added', color: 'success'}))
         }
         setUpdate(null);
     }
@@ -33,6 +36,7 @@ export default function Department() {
     }
 
     const handleDelete = (id) => {
+        dispatch(setAlert({text: 'Department successfully deleted', color: 'success'}))
         dispatch(deleteDepartment(id));
     }
 

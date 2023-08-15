@@ -18,9 +18,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DepartmentIcon from '@mui/icons-material/ViewQuilt';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import Button from '../../user/UI/button/Button';
+import { useDispatch } from "react-redux";
+import { logoutRequest } from "../../user/redux/action/Auth.action";
 
-const drawerWidth = 150;
+const drawerWidth = 175;
 
 const openedMixin = (theme) => ({
     backgroundColor: "rgba(0, 0, 0, 0.04)",
@@ -92,10 +96,14 @@ const Drawer = styled(MuiDrawer, {
 
 const Layout = ({ children }) => {
     const [open, setOpen] = React.useState(false);
+    const [openLogoutModal, setOpenLogoutModal] = React.useState(false);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const adminLogout = () => {
-        alert('Do you know that you are doing logout to your dashboard.')
-        localStorage.removeItem('_loginStatus');
+        dispatch(logoutRequest())
+        navigate('/auth');
     }
 
     const handleDrawerOpen = () => {
@@ -104,6 +112,14 @@ const Layout = ({ children }) => {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    const openLogoutAlert = () => {
+        setOpenLogoutModal(true);
+    };
+
+    const closeLogoutAlert = () => {
+        setOpenLogoutModal(false);
     };
 
     const LinkData = [
@@ -127,7 +143,7 @@ const Layout = ({ children }) => {
             icon: <DepartmentIcon />,
             to: "/admin/department",
         }
-        
+
     ];
 
     return (
@@ -190,9 +206,7 @@ const Layout = ({ children }) => {
                     ))}
                 </List>
                 <ListItemButton
-                    onClick={adminLogout}
-                    component={Link}
-                    to='/auth'
+                    onClick={openLogoutAlert}
                     sx={{
                         maxHeight: 48,
                         marginTop: 'auto',
@@ -210,6 +224,21 @@ const Layout = ({ children }) => {
                     </ListItemIcon>
                     <ListItemText primary='Logout' sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
+                <Dialog
+                    open={openLogoutModal}
+                    onClose={closeLogoutAlert}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle className="text-center p-5 pb-3" id="alert-dialog-title">
+                        <Typography variant="h4" sx={{ fontWeight: '700' }}>Are you sure?</Typography></DialogTitle>
+                    <DialogContent className="px-5">
+                        <DialogContentText id="alert-dialog-description">Do you know that you are doing logout to your account.</DialogContentText>
+                    </DialogContent>
+                    <DialogActions className="justify-content-center p-5 pt-3">
+                        <Button onClick={closeLogoutAlert}>Close</Button>
+                        <Button onClick={adminLogout} classes={'ms-4'}>Logout</Button>
+                    </DialogActions>
+                </Dialog>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, px: 3, minHeight: '100vh' }}>
                 <DrawerHeader />

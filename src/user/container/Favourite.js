@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TitleBox from '../UI/titlePart/TitleBox';
 import CustomCard from '../UI/CustomCard';
 import { addToCart } from '../redux/action/cart.action';
+import { setAlert } from '../../../src/user/redux/slice/AlertSlice';
 
 function Favourite() {
     const dispatch = useDispatch();
@@ -16,6 +17,8 @@ function Favourite() {
     })
 
     const handleCart = (id) => {
+        let addedCartItem = medicineState.medicines.find((val) => val.id === id)
+        dispatch(setAlert({ text:  addedCartItem.mediname + ' is successfully added in cart', color: 'success' }))
         dispatch(addToCart(id))
     }
     return (

@@ -7,6 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 import { decrementQuantity, incrementQuantity, removeItemFromCart } from '../redux/action/cart.action';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { setAlert } from '../../../src/user/redux/slice/AlertSlice';
 
 function Cart() {
     const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function Cart() {
     }
 
     const removeFromCart = (id) => {
+        let addedCartItem = medicineState.medicines.find((val) => val.id === id)
+        dispatch(setAlert({ text:  addedCartItem.mediname + ' is successfully removed from cart', color: 'success' }))
         dispatch(removeItemFromCart(id));
     }
     return (

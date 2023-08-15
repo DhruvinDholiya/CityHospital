@@ -13,7 +13,7 @@
     {
       "name": "Dhruvin Dholiya",
       "designation": "Anesthesiologist",
-      "desc": "34534",
+      "desc": "34534f",
       "twitter": "https://www.google.com",
       "facebook": "https://www.google.com",
       "instagram": "https://www.google.com",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Cancer",
-      "desc": "Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque.\n\nVivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque.",
+      "desc": "Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque. \n\nVivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque.",
       "id": 3
     },
     {
@@ -71,11 +71,6 @@
       "name": "Dental",
       "desc": "sollicitudin sed est. Vestibulum volutpat luctus quam sed finibus. Sed luctus odio eget ex posuere hendrerit. Donec iaculis nisi ut purus.\n\nVivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque.",
       "id": 5
-    },
-    {
-      "name": "Neurosurgery",
-      "desc": "Aliquam sed convallis libero. Proin in mi tempor, convallis lectus sed, convallis mauris. Quisque ac nulla et lorem ultricies vulputate.\n\nVivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque.",
-      "id": 6
     }
   ]
 }

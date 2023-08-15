@@ -1,14 +1,17 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
+import { setAlert } from '../user/redux/slice/AlertSlice';
 
 const PrivateRoute = () => {
-    let checkLogin = JSON.parse(localStorage.getItem('_loginStatus'));
+    const dispatch = useDispatch();
+    let isAuthenticated = useSelector((state) => state.auth.user);
 
-    if (!checkLogin) {
+    if (isAuthenticated) {
         return <Outlet />
     } else {
-        alert("You cann't access here without login.")
-        return <Navigate to={"/auth"} />
+        dispatch(setAlert({ text: 'You must be logged in to access here.', color: 'error' }));
+        return <Navigate to={'/auth'}/>
     }
 }
 

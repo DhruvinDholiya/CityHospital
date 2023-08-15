@@ -4,20 +4,28 @@ import * as Yup from 'yup';
 import Button from '../UI/button/Button';
 import Input from '../UI/input/Input';
 import TitleBox from '../UI/titlePart/TitleBox';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest, passwordForgotRequest, signupRequest } from '../redux/action/Auth.action';
+import { useNavigate } from 'react-router-dom';
 
 
 function Auth() {
     const [formType, setFormType] = useState('login');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const Auth = useSelector(state => state.auth);
 
     const handleSignUp = (values) => {
         dispatch(signupRequest(values));
     }
 
     const handleLogin = (values) => {
-        dispatch(loginRequest(values));
+        dispatch(loginRequest({
+            data: values,
+            callback: (route) => {
+                navigate(route);
+            }
+        }));
     }
 
     const handleForgot = (values) => {
@@ -27,7 +35,7 @@ function Auth() {
 
 
     let validSchema = {};
-    let initialVal = {};
+    let initialVal = { name: '', email: '', password: '' };
     if (formType === 'login') {
         validSchema = {
             email: Yup.string().email().required(),
@@ -83,7 +91,8 @@ function Auth() {
                             formType === 'forgot' ? (
                                 <>You can reset your password here. <br /> Please enter the email address you'd like your password reset information sent to</>
                             )
-                                : ('Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.')
+                                : (<>
+                                Aenean enim orci, suscipit vitae sodales ac, semper in ex. <br /> Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</>)
                         ]}
                     />
                     <form onSubmit={handleSubmit} className="php-email-form">
@@ -126,10 +135,10 @@ function Auth() {
                             <div className="col-md-7 my-4">
                                 {
                                     formType === 'login' ?
-                                        <Button type='submit'>Login</Button>
+                                        <Button type='submit'>{Auth.loading ? 'Please wait....' : 'Login'}</Button>
                                         : formType === 'signup' ?
-                                            <Button type='submit'>Sign Up</Button>
-                                            : <Button type='submit'>Request reset link</Button>
+                                            <Button type='submit'>{Auth.loading ? 'Please wait....' : 'Sign Up'}</Button>
+                                            : <Button type='submit'>{Auth.loading ? 'Please wait....' : 'Request reset link'}</Button>
                                 }
                             </div>
                             <div className="col-md-7">

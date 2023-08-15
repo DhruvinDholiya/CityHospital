@@ -13,7 +13,7 @@ export const alertSlice  = createSlice({
             state.text = action.payload.text
             state.color = action.payload.color
         },
-        resetAlert: (state, action) => {
+        resetAlert: (state) => {
             state.text = ''
             state.color = ''
         }

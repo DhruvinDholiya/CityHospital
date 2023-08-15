@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 
@@ -8,16 +8,13 @@ export const signupAPI = (values) => {
         return new Promise((resolve, reject) => {
             createUserWithEmailAndPassword(auth, values.email, values.password)
                 .then((userCredential) => {
-                    const user = userCredential.user;
                     onAuthStateChanged(auth, (user) => {
                         sendEmailVerification(auth.currentUser)
                             .then(() => {
                                 resolve({ message: 'Email varification sent.', user: user })
                             })
                             .catch((error) => {
-                                const errorCode = error.code
-                                const errorMessage = error.message
-                                reject({ errorCode, errorMessage })
+                                reject({message: error.code });
                             });
                     });
                 })
@@ -43,7 +40,7 @@ export const loginAPI = (values) => {
                     if (user.emailVerified) {
                         resolve({ message: 'Login Completed', user: user });
                     } else {
-                        reject({ message: 'Please verify to your registred email address.' })
+                        reject({ message: 'Your added email is not verified.' })
                     }
                 })
                 .catch((error) => {
@@ -54,9 +51,6 @@ export const loginAPI = (values) => {
                     } else if (error.code.localeCompare('auth/network-request-failed') === 0) {
                         reject({ message: 'Please check your internet connection.' })
                     }
-                    const errorCode = error.code
-                    const errorMessage = error.message
-                    reject({ errorCode, errorMessage })
                 });
         })
     } catch (error) {
@@ -72,14 +66,26 @@ export const passwordForgotAPI = (values) => {
                     resolve({ message: 'Password reset email sent!' });
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-
-                    if (errorCode.localeCompare('auth/user-not-found') === 0) {
+                    if (error.code.localeCompare('auth/user-not-found') === 0) {
                         reject({ message: 'Please enter your registred email address.' })
-                    } else if (errorCode.localeCompare('auth/network-request-failed') === 0) {
+                    } else if (error.code.localeCompare('auth/network-request-failed') === 0) {
                         reject({ message: 'Please check your internet connection.' })
                     }
                 });
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const logoutAPI = () => {
+    try {
+        return new Promise((resolve, reject) => {
+            signOut(auth).then(() => {
+                resolve({ message: 'Successfully logout' });
+            }).catch((error) => {
+                reject({ message: error.code })
+            });
         })
     } catch (error) {
         console.log(error)

@@ -13,15 +13,13 @@ import NotFound from '../user/component/NotFound';
 import Auth from '../user/container/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/medicines/Medicine';
-import PrivateRoute from '../routes/PrivateRoute';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
+import PrivateRoute from '../routes/PrivateRoute';
 
 const UserRoutes = () => {
-  // const [cartDataCount, setCartDataCount] = React.useState(0);
   return (
     <>
-      {/* <Header cartDataCount={cartDataCount} /> */}
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -31,17 +29,15 @@ const UserRoutes = () => {
         <Route path='/departments' element={<Departments />} />
         <Route element={<PrivateRoute />}>
           <Route path='/medicines' element={<Medicine />} />
-        </Route>
-        <Route path='/doctors' element={<Doctors />} />
-        <Route path='/doctor/'>
-          <Route path=':id' element={<Doctor />} />
-          <Route path='visiting_doctor' element={< VisitingDoctors />} />
+          <Route path='/doctors' element={<Doctors />} />
+          <Route path='/doctor/'>
+            <Route path=':id' element={<Doctor />} />
+            <Route path='visiting_doctor' element={< VisitingDoctors />} />
+          </Route>
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/favourite' element={<Favourite />} />
         </Route>
         <Route path='/auth' element={<Auth />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/favourite' element={<Favourite />} />
-        {/* <Route path='/medicine-no-redux' element={<MedicineNoRedux setCartDataCount={setCartDataCount}/>} /> */}
-        {/* <Route path='/cart-no-redux' element={<CartNoRedux setCartDataCount={setCartDataCount} />} /> */}
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMedicineData, deleteMedicineData, getMedicineData, updateMedicineData } from '../../../user/redux/action/medicine.action';
 import Loader from '../../../user/UI/loader/Loader';
 import ErrorMsg from '../../../user/UI/errorMsg/ErrorMsg';
+import { setAlert } from '../../../user/redux/slice/AlertSlice';
 
 export default function Medicine() {
     const [update, setUpdate] = React.useState(null);
@@ -21,8 +22,10 @@ export default function Medicine() {
     const handleSubmitData = (data) => {
         if (update) {
             dispatch(updateMedicineData(data))
+            dispatch(setAlert({text: 'Medicine successfully update', color: 'success'}))
         } else {
             dispatch(addMedicineData(data));
+                  dispatch(setAlert({text: 'Medicine successfully added', color: 'success'}))
         }
         setUpdate(null);
     }
@@ -31,6 +34,7 @@ export default function Medicine() {
         setUpdate(row)
     }
     const handleDelete = (id) => {
+         dispatch(setAlert({text: 'Medicine successfully deleted', color: 'success'}))
         dispatch(deleteMedicineData(id));
     }
 

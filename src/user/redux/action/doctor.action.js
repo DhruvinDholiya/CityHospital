@@ -4,11 +4,9 @@ import * as ActionType from '../Actiontype';
 export const getDoctors = () => (dispatch) => {
     try {
         dispatch(loadingDoctorsData(true));
-        setTimeout(() => {
-            getDoctorsData()
-                .then((response) => dispatch({ type: ActionType.DOCTORS_SUCCESS, payload: response.data }))
-                .catch((error) => dispatch(getError(error.message)))
-        }, 1500);
+        getDoctorsData()
+            .then((response) => dispatch({ type: ActionType.DOCTORS_SUCCESS, payload: response.data }))
+            .catch((error) => dispatch(getError(error.message)))
     } catch (error) {
         dispatch(getError(error.message));
     }
@@ -25,7 +23,6 @@ export const addDoctor = (data) => (dispatch) => {
 }
 
 export const deleteDoctor = (id) => (dispatch) => {
-    console.log('hello')
     try {
         deleteDoctorData(id)
             .then(dispatch({ type: ActionType.DOCTORS_DELETE, payload: id }))

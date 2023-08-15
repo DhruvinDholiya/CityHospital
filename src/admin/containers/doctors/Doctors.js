@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Loader from '../../../user/UI/loader/Loader';
 import ErrorMsg from '../../../user/UI/errorMsg/ErrorMsg'
+import { setAlert } from '../../../user/redux/slice/AlertSlice';
 
 
 export default function Doctors() {
@@ -23,8 +24,10 @@ export default function Doctors() {
     const handleAddData = (data) => {
         if (update) {
             dispatch(updateDoctor(data));
+            dispatch(setAlert({text: 'Doctor successfully update', color: 'success'}))
         } else {
             dispatch(addDoctor(data));
+            dispatch(setAlert({text: 'Doctor successfully added', color: 'success'}))
         }
         setUpdate(null);
     }
@@ -34,6 +37,7 @@ export default function Doctors() {
     }
 
     const handleDelete = (id) => {
+        dispatch(setAlert({text: 'Doctor successfully deleted', color: 'success'}))
         dispatch(deleteDoctor(id));
     }
 
