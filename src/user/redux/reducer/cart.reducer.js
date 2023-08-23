@@ -7,7 +7,6 @@ const initSate = {
 }
 
 export const cartReducer = (state = initSate, action) => {
-    console.log(action)
     switch (action.type) {
         case ActionType.Add_TO_CART:
             let hasItmesForCart = state.items.some((val) => val.pid === action.payload.pid);

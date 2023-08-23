@@ -1,9 +1,9 @@
     import React from 'react';
     import { TitleWapper, Title, SubTitle, OrangeTitle } from './TitleBox.Styled';
 
-    function TitleBox({ OrangeTitleText, titleText, subTitleText, type }) {
+    function TitleBox({ OrangeTitleText, titleText, subTitleText, type, ...rest }) {
         return (
-            <TitleWapper align={type}>
+            <TitleWapper {...rest} align={type}>
                 {OrangeTitleText ? <OrangeTitle>{OrangeTitleText}</OrangeTitle> : null}
                 <Title align={type}>{titleText}</Title>
                 {

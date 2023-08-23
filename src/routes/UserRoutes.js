@@ -15,7 +15,7 @@ import Medicine from '../user/container/medicines/Medicine';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
 import PrivateRoute from '../routes/PrivateRoute';
-import MedicineInfo from '../user/container/medicines/MedicineInfo';
+import MedicineInfo from '../user/container/medicines/MedicineInfo'
 
 const UserRoutes = () => {
   return (
@@ -24,10 +24,10 @@ const UserRoutes = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/appointment' element={<Appointment />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/departments' element={<Departments />} />
         <Route element={<PrivateRoute />}>
+          <Route path='/appointment' element={<Appointment />} />
           <Route path='/medicines' element={<Medicine />} />
           <Route path='/medicine/'>
             <Route path=':id' element={<MedicineInfo />} />

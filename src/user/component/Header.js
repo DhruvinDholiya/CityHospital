@@ -9,7 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThemeIcon from '@mui/icons-material/InvertColors';
 import ThemeContext from '../context/ThemeContext';
 import { logoutRequest } from '../redux/action/Auth.action';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Typography, DialogActions } from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, DialogActions } from '@mui/material';
 
 function Header() {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Header() {
     const checklogin = useSelector((state) => state.auth.user);
 
     const handleScroll = () => {
-        setHeaderScrolled(window.scrollY > 100);
+        setHeaderScrolled(window.scrollY > 50);
     };
 
     useEffect(() => {
@@ -101,8 +101,7 @@ function Header() {
                                             onClose={() => closeLogoutAlert()}
                                             aria-labelledby="alert-dialog-title"
                                             aria-describedby="alert-dialog-description">
-                                            <DialogTitle className="text-center p-md-5 p-4 pb-3" id="alert-dialog-title">
-                                                <Typography variant="h4" sx={{ fontWeight: '700' }}>Are you sure?</Typography></DialogTitle>
+                                            <DialogTitle variant='h4' className="text-center p-md-5 p-4 pb-2" id="alert-dialog-title"  sx={{ fontWeight: '700' }}>Are you sure?</DialogTitle>
                                             <DialogContent className="px-md-5 px-4">
                                                 <DialogContentText id="alert-dialog-description" className='text-center'>Hello, are you sure you want to logout your account? Remember that once your account is logged out you will not be able to access some pages.</DialogContentText>
                                             </DialogContent>

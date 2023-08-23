@@ -1,7 +1,7 @@
 import React from 'react';
 import {OutlinedButton, PrimaryButton, SecondaryButton } from './Button.style';
 
-function Button({ children, type, btnDisabled=false, classes, btnType, path, ...rest}) {
+function Button({ children, type, btnDisabled=false, classes, btnType, path, btnStyle, ...rest}) {
     const checkButtonType = () => {
         switch (type) {
             case 'primary':
@@ -18,7 +18,7 @@ function Button({ children, type, btnDisabled=false, classes, btnType, path, ...
 
     const BaseButton = checkButtonType()
     return (
-        <BaseButton {...rest} to={path} as={btnType} className={classes} disabled={btnDisabled}> {children}</BaseButton>
+        <BaseButton {...rest} type={btnStyle} to={path} as={btnType} className={classes} disabled={btnDisabled}> {children}</BaseButton>
     );
 }
 

@@ -1984,16 +1984,21 @@ input {
   backdrop-filter: blur(5px);
 }
 
-.data_table [role="rowgroup"] {
+.data_table [role="rowgroup"],
+.user_data_table [role="rowgroup"]  {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
 .data_table div[aria-label],
-.data_table div[data-field="id"] .MuiDataGrid-cellContent {
+.data_table div[data-field="id"] .MuiDataGrid-cellContent,
+.user_data_table div[aria-label],
+.user_data_table div[data-field="id"] .MuiDataGrid-cellContent  {
   text-transform: uppercase;
   font-weight: 600;
 }
-
+.user_data_table .MuiDataGrid-cellContent {
+  font-size: 0.8rem;
+}
 .MuiDataGrid-root .MuiDataGrid-columnHeader:not(:last-child),
 .MuiDataGrid-root .MuiDataGrid-cell:not(:last-child) {
   border-right: 1px solid rgba(224, 224, 224, 1);
@@ -2097,13 +2102,29 @@ input {
 .dark p,
 .dark label,
 .dark .services .icon-box:hover h4 a,
-.services .icon-box:hover p {
+.services .icon-box:hover p,
+.dark .user_data_table * {
   color: #f7f7f7 !important;
+}
+.dark .orange_tab button.MuiTab-textColorPrimary {
+  color: #F7F7F7;
 }
 
 .dark .signature_image img {
   filter: invert(100%);
 }
+.orange_tab button{
+  font-family: "Open Sans", sans-serif !important;
+  text-transform: capitalize;
+}
+body .orange_tab button.Mui-selected,
+.dark .user_data_table div[aria-label]  {
+    color: #FF6337 !important;
+}
+body .orange_tab .MuiTabs-indicator {
+  background-color: #FF6337 !important;
+}
+
 @media only screen and (min-width: 1200px)  {
   .navbar-mobile {
     transform: scale(0) !important;
@@ -2152,7 +2173,7 @@ input {
     padding: 30px 0;
   }
 
-  #alert-dialog-title .css-1313egv-MuiTypography-root {
+  #alert-dialog-title {
     font-size: 30px;
   }
 }
@@ -2175,7 +2196,7 @@ input {
   .contact .info h4 {
     font-size: 18px;
   }
-  #alert-dialog-title .css-1313egv-MuiTypography-root {
+  #alert-dialog-title {
     font-size: 24px;
   }
 

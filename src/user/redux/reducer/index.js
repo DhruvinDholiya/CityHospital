@@ -6,6 +6,7 @@ import { favouriteReducer } from "./favourite.reducer";
 import departmentReducer from "../slice/DepartmentSlice";
 import AlertReducer from "../slice/AlertSlice";
 import { authReducer } from "./auth.reducer";
+import  aptReducer  from "../slice/AptSlice";
 
 export const rootReducer = combineReducers({
     doctors: doctorsReducer,
@@ -14,7 +15,8 @@ export const rootReducer = combineReducers({
     favourites: favouriteReducer,
     department: departmentReducer,
     alert: AlertReducer,
-    auth: authReducer
+    auth: authReducer,
+    apt: aptReducer,
 })
 
 
