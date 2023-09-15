@@ -10,6 +10,7 @@ import Alert from './user/UI/alert/Alert';
 import { SnackbarProvider } from 'notistack';
 import PrivateRoute from './routes/PrivateRoute';
 
+
 function App() {
   return (
     <Provider store={store}>

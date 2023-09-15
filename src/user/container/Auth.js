@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Auth() {
-    const [formType, setFormType] = useState('login');
+    const [formType, setFormType] = useState('signup');
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const Auth = useSelector(state => state.auth);
@@ -32,10 +32,8 @@ function Auth() {
         dispatch(passwordForgotRequest(values))
     }
 
-
-
     let validSchema = {};
-    let initialVal = { name: '', email: '', password: '' };
+    let initialVal = {};
     if (formType === 'login') {
         validSchema = {
             email: Yup.string().email().required(),
@@ -54,9 +52,11 @@ function Auth() {
                 .matches(
                     /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
                     'Must password have, Numbers , alphabets, and Special Character'
-                )
+                ),
+            image: Yup.mixed()
+                .nullable()
         };
-        initialVal = { name: '', email: '', password: '' };
+        initialVal = { name: '', email: '', password: '', image: '' };
     } else if (formType === 'forgot') {
         validSchema = {
             email: Yup.string().email().required()
@@ -87,25 +87,32 @@ function Auth() {
                 <div className="container">
                     <TitleBox
                         titleText={formType === 'forgot' ? 'Forgot your password?' : formType === 'login' ? 'Login' : 'Sign Up'}
-                        subTitleText={[
-                            formType === 'forgot' ? (
-                                <>You can reset your password here. <br className='d-md-block d-none' /> Please enter the email address you'd like your password reset information sent to</>
-                            )
-                                : (<>
-                                Aenean enim orci, suscipit vitae sodales ac, semper in ex. <br className='d-md-block d-none' /> Nunc aliquam eget nibh eu euismod. Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</>)
-                        ]}
                     />
                     <form onSubmit={handleSubmit} className="php-email-form">
                         <div className="row justify-content-center g-4">
                             {formType === 'signup' ? (
-                                <div className="col-md-7">
-                                    <Input type="text" name="name" id="name" placeholder="Your Name"
-                                        value={values.name}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        errorText={errors.name && touched.name ? errors.name : null}
-                                    />
-                                </div>
+                                <>
+                                    <div className='col-md-7'>
+                                        <div className='profile_img position-relative'>
+                                            <Input type="file" name="image" id="image"
+                                                className='rounded-circle  mx-auto'
+                                                value={values.image}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                errorText={errors.image && touched.image ? errors.image : null}
+                                            />
+                                            <img src='https://firebasestorage.googleapis.com/v0/b/cityhospital-5b223.appspot.com/o/other%2Fuser.png?alt=media&token=7ca9b19e-1e75-4201-81e2-0d5fe0f58a6e' className='position-absolute rounded-circle' alt='user profile' />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-7">
+                                        <Input type="text" name="name" id="name" placeholder="Your Name"
+                                            value={values.name}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            errorText={errors.name && touched.name ? errors.name : null}
+                                        />
+                                    </div>
+                                </>
                             ) : null}
                             <div className="col-md-7">
                                 <Input type="email" name="email" id="email" placeholder="Email Address"

@@ -15,11 +15,26 @@ import Medicine from '../user/container/medicines/Medicine';
 import Cart from '../user/container/Cart';
 import Favourite from '../user/container/Favourite';
 import PrivateRoute from '../routes/PrivateRoute';
-import MedicineInfo from '../user/container/medicines/MedicineInfo'
+import MedicineInfo from '../user/container/medicines/MedicineInfo';
+import Splash from '../user/container/Splash';
 
 const UserRoutes = () => {
-  return (
-    <>
+  const [splashScreen, setSplashScreen] = React.useState(true);
+
+  React.useEffect(() => {
+    const splashTime = setTimeout(() => {
+      setSplashScreen(false)
+    }, 3500);
+
+    return () => clearTimeout(splashTime);
+  }, [])
+
+  if (splashScreen) {
+    document.body.classList.add("overflow-hidden");
+    return <Splash />
+  } else {
+    document.body.classList.remove("overflow-hidden");
+    return <>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -44,7 +59,7 @@ const UserRoutes = () => {
       </Routes>
       <Footer />
     </>
-  );
+  }
 }
 
 export default UserRoutes;

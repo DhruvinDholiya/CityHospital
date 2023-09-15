@@ -18,9 +18,10 @@ function Favourite() {
 
     const handleCart = (id) => {
         let addedCartItem = medicineState.medicines.find((val) => val.id === id)
-        dispatch(setAlert({ text:  addedCartItem.mediname + ' is successfully added in cart', color: 'success' }))
+        dispatch(setAlert({ text: addedCartItem.mediname + ' is successfully added in cart', color: 'success' }))
         dispatch(addToCart(id))
     }
+    console.log(mediToFavData)
     return (
         <section id="favourite" className="favourite">
             <div className="container">
@@ -29,17 +30,23 @@ function Favourite() {
                     subTitleText={[
                         'Welcome to favourite. You can see here your favourite product. Thank you !!!'
                     ]} />
-                <div className="row justify-content-center pb-4 g-4">
-                    {
-                        mediToFavData.map((val) => {
-                            return (
-                                <div className="col-xl-3 col-lg-4 col-md-6" key={val.fid}>
-                                    <CustomCard cardData={val} onclick={handleCart} btnText={'Add to Cart'}/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+
+                {
+                    mediToFavData.length > 0 ?
+                        <div className="row justify-content-center pb-4 g-4">
+                            {
+                                mediToFavData.map((val) => {
+                                    return (
+                                        <div className="col-xl-3 col-lg-4 col-md-6" key={val.fid}>
+                                            <CustomCard cardData={val} onclick={handleCart} btnText={'Add to Cart'} />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div> :
+                        null
+                }
+
             </div>
         </section>
     );
